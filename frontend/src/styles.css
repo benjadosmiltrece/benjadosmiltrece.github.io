@@ -51,8 +51,6 @@ html, body {
 @keyframes mymove {
     100% {background-position:center;}
   }
-
-
 header {    
     background-color: var(--principal-color);
     padding: 15px;
@@ -154,11 +152,10 @@ header h1 {
 
 .container {
     box-shadow: 5 5 5 #000;
-    border: 1px solid --dark-gray;
+    border: 1px solid var(--dark-gray);
     border-width: 2.5q;
     background-color: #f5f5f5;
     filter: var(--shadow);
-    filter: drop-shadow(0 0 0.03rem #000000);
 }
 
 .container iframe {

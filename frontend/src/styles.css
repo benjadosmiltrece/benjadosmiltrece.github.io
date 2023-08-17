@@ -1,16 +1,61 @@
 /* Estilos comunes */
 
-body {
-    background-image: url(assets/back.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+* {
 }
 
-header {
-    background-color: #289646;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    padding: 25px;
+:root {
+    --principal-color-high: rgb(45, 163, 98);
+    --principal-color: rgb(28, 136, 77);
+    --principal-color-dark: rgb(15, 110, 58);
+
+    --secondary-color-high: rgb(236, 123, 185);
+    --secondary-color: rgb(210, 92, 157);
+    --secondary-color-dark: rgb(185, 67, 132);
+
+    --default-gray-high: #dddddd;
+    --default-gray: #bbbbbb;
+    --default-gray-dark: #9c9c9c;
+    --dark-gray: #3131319a;
+
+    --default-gray-t-light: rgba(187, 187, 187, 0.2);
+    --default-gray-t: rgba(187, 187, 187, 0.500);
+    --default-gray-t-dark: rgba(187, 187, 187, 0.750);
+
+    --shadow: drop-shadow(7px 7px 0 #00000039);
+
+}
+
+
+::-webkit-scrollbar {    /* width */
+    width: 2mm;
+  }
+  
+  ::-webkit-scrollbar-track {  /* Track */
+    background: var(--default-gray-high);
+  }
+
+  ::-webkit-scrollbar-thumb {  /* Handle */
+    background: var(--principal-color);
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--principal-color-high);
+  }
+html, body {
+    background-image: url(assets/bg-pattern.png);
+    background-blend-mode: difference;
+    background-size: 10%;
+
+    animation: mymove linear 50s infinite;
+    
+}
+@keyframes mymove {
+    100% {background-position:center;}
+  }
+
+
+header {    
+    background-color: var(--principal-color);
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     color: #fff;
@@ -18,15 +63,14 @@ header {
     position: sticky;
     top: 0;
     z-index: 1;
+    filter: var(--shadow);
 }
-
 header h1 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
 }
-
 #btn-menu {
     background: none;
     border: none;
@@ -35,9 +79,21 @@ header h1 {
     padding: 0;
     line-height: 0;
 }
-
 #btn-menu:hover {
-    color: #81d4fd;
+    color: var(--secondary-color-high);
+}
+#logoDiv {
+    display: flex;
+    justify-content: center;
+}
+#logo {
+    margin-top: -630px;
+    position: absolute;
+    z-index: 2;
+    scale: 10%;
+}
+#personita {
+    padding: 0px 0px 0px 5px;
 }
 
 #btn-cuenta {
@@ -45,7 +101,7 @@ header h1 {
     text-decoration: none;
     border: 1px solid #fff;
     line-height: 0;
-    padding: 15px 10px;
+    padding: 10px 10px;
     border-radius: 10px;
     font-size: 20px;
 }
@@ -55,8 +111,8 @@ header h1 {
 }
 
 #btn-cuenta:hover {
-    color: #81d4fd;
-    border-color: #81d4fd;
+    color: var(--secondary-color-high);
+    border-color: var(--secondary-color-high);
 }
 
 #menu {
@@ -64,9 +120,10 @@ header h1 {
     left: -320px;
     width: 300px;
     height: 100%;
-    background-color: #289646;
+    background-color: var(--principal-color);
     transition: left 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    filter: var(--shadow)
 }
 
 #menu.open {
@@ -92,22 +149,16 @@ header h1 {
 }
 
 #menu ul li a:hover {
-    background-color: #34a151;
+    background-color: var(--principal-color-high);
 }
 
 .container {
-    background-color: #f1f1f1;
-}
-
-footer {
-    background-color: #289646;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-}
-
-footer p {
-    margin: 0;
+    box-shadow: 5 5 5 #000;
+    border: 1px solid --dark-gray;
+    border-width: 2.5q;
+    background-color: #f5f5f5;
+    filter: var(--shadow);
+    filter: drop-shadow(0 0 0.03rem #000000);
 }
 
 .container iframe {
@@ -122,6 +173,13 @@ img {
 }
 
 /* Páginas de "Registro" e "Iniciar sesión" */
+
+#x-mark {
+    color: #222;
+}
+#x-mark:hover {
+    color: #464646;
+}
 
 .close-form {
     position: absolute;
@@ -142,7 +200,7 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 400px;
-    background-color: #289646;
+    background-color: var(--principal-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     color: #fff;
 }
@@ -161,7 +219,7 @@ img {
 
 .control:focus {
     outline: none;
-    border-color: #289646;
+    border-color: var(--principal-color);
 }
 
 .control, .form-btn {
@@ -172,13 +230,13 @@ img {
     width: 100%;
     border: none;
     padding: 12px;
-    background-color: #34a853;
+    background-color: var(--principal-color-high);
     color: #fff;
     transition: background-color 0.3s ease;
 }
 
 .form-btn:hover {
-    background-color: #3fb45e;
+    background-color: var(--principal-color-high);
 }
 
 .form p {
@@ -204,7 +262,7 @@ img {
 }
 
 #postear {
-    background-color: #289646;
+    background-color: var(--principal-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     max-width: 600px;
 }

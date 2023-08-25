@@ -1,16 +1,13 @@
-/* Estilos comunes */
+/* ---- */
 
-* {
-}
 
 :root {
+
+    --yellow-default: rgb(254, 245, 42);
+
     --principal-color-high: rgb(45, 163, 98);
     --principal-color: rgb(28, 136, 77);
     --principal-color-dark: rgb(15, 110, 58);
-
-    --secondary-color-high: rgb(236, 123, 185);
-    --secondary-color: rgb(210, 92, 157);
-    --secondary-color-dark: rgb(185, 67, 132);
 
     --default-gray-high: #dddddd;
     --default-gray: #bbbbbb;
@@ -29,30 +26,33 @@
 p {
     color: #fff;
 }
-h2 {
-    color: #81d4fd;
+.tituloPagina {
+    color: #fff;
 }
 
 ::-webkit-scrollbar {    /* width */
     width: 2mm;
-  }
-  ::-webkit-scrollbar-track {  /* Track */
+}
+::-webkit-scrollbar-track {  /* Track */
     background: var(--default-gray-high);
-  }
-  ::-webkit-scrollbar-thumb {  /* Handle */
+}
+::-webkit-scrollbar-thumb {  /* Handle */
     background: var(--principal-color);
-  }
-  ::-webkit-scrollbar-thumb:active {
+}
+::-webkit-scrollbar-thumb:active {
     background: var(--principal-color-high);
-  }
+}
+
 body {
     background-image: url(assets/bg-pattern.png);
     background-size: 15%;
     animation: mymove linear 50s infinite;
 }
+
 @keyframes mymove {
     100% {background-position:center;}
-  }
+}
+
 header {        
     background-color: var(--principal-color);
     padding: 15px;
@@ -72,6 +72,7 @@ header h1 {
     transform: translateX(-50%);
     margin: 0;
 }
+
 #btn-menu {
     background: none;
     border: none;
@@ -81,8 +82,10 @@ header h1 {
     line-height: 0;
 }
 #btn-menu:hover {
-    color: var(--secondary-color-high);
+    color: var(--yellow-default);
+    scale: 110%;
 }
+
 #logoDiv {
     display: flex;
     justify-content: center;
@@ -93,10 +96,13 @@ header h1 {
     z-index: 2;
     scale: 10%;
 }
+#logo:hover {
+    scale: 11%;
+}
+
 #personita {
     padding: 0px 0px 0px 5px;
 }
-
 #btn-cuenta {
     color: #fff;
     text-decoration: none;
@@ -106,14 +112,13 @@ header h1 {
     border-radius: 10px;
     font-size: 20px;
 }
-
 #btn-cuenta i {
     margin-right: 5px;
 }
-
 #btn-cuenta:hover {
-    color: var(--secondary-color-high);
-    border-color: var(--secondary-color-high);
+    color: var(--yellow-default);
+    border-color: var(--yellow-default);
+    scale: 110%;
 }
 
 #menu {
@@ -127,31 +132,29 @@ header h1 {
     filter: var(--shadow);
     box-shadow: 2px 0 0 0 black;
 }
-
 #menu.open {
     left: 0;
 }
-
 #menu img {
     width: 120px;
     display: block;
     margin: 20px auto;
 }
-
 #menu ul {
     list-style: none;
     padding: 0;
 }
-
 #menu ul li a {
     color: #fff;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
 }
-
 #menu ul li a:hover {
     background-color: var(--principal-color-high);
+    scale: 110%;
+    box-shadow: 0 0 0 0.1rem black;
+    filter: var(--shadow);
 }
 
 .container {
@@ -163,6 +166,14 @@ header h1 {
 
 img {
     max-width: 100%;
+}
+
+#boton-subir {
+    position: fixed;
+    background-color: var(--principal-color-high);
+    scale: 110%;
+    box-shadow: 0 0 0 0.1rem black;
+    filter: var(--shadow);
 }
 
 /* Páginas de "Registro" e "Iniciar sesión" */
@@ -182,11 +193,9 @@ img {
     color: #fff;
     font-size: 40px;
 }
-
 .close-form:hover {
     color: #81d4fd;
 }
-
 .form {
     position: fixed;
     top: 50%;
@@ -198,7 +207,6 @@ img {
     border: var(--borde-default);
     color: #fff;
 }
-
 .form h2 {
     margin-bottom: 1.25rem;
     text-align: center;
@@ -210,16 +218,13 @@ img {
     margin-bottom: 16px;
     border: 2px solid #ccc;
 }
-
 .control:focus {
     outline: none;
     border-color: var(--principal-color);
 }
-
 .control, .form-btn {
     border-radius: 0.375rem;
 }
-
 .form-btn {
     width: 100%;
     border: none;
@@ -228,22 +233,18 @@ img {
     color: #fff;
     transition: background-color 0.3s ease;
 }
-
 .form-btn:hover {
     background-color: var(--principal-color-high);
 }
-
 .form p {
     text-align: center;
     font-size: 1.125rem;
     margin-top: 1rem;
 }
-
 .form a {
     color: #fff;
     text-decoration: none;
 }
-
 .form a:hover {
     text-decoration: underline;
 }
@@ -254,39 +255,33 @@ img {
     color: #aaa;
     margin-bottom: 1rem;
 }
-
 #postear {
     background-color: var(--principal-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     max-width: 600px;
 }
-
 #mensaje {
     resize: none;
 }
-
 #titulo, #mensaje {
     font-size: 20px;
 }
-
 .container article {
     box-shadow: 3.5px 3.5px 10px rgba(0, 0, 0, 0.3);
     transition: 0.15s;
     background-color: #fff;
 }
-
 .container article:hover {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
-
 #nombre-usuario {
     margin-bottom: 0.25rem;
+    color: #000;
 }
-
 #fecha {
     color: #aaa;
 }
-
 #contenido {
     margin-top: 0.6rem;
+    color: #000;
 }

@@ -2,12 +2,17 @@
 <header *ngIf="shouldShow()">
     <button type="button" id="btn-menu" (click)="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     <div id="logoDiv" style="text-align: center;">
-        <img id="logo" src="../assets/logo.png" alt="logo">
+        <img routerLink="" id="logo" src="../assets/logo.png" alt="logo">
     </div>
     <a routerLink="registro" id="btn-cuenta" (click)="closeMenu()"><i id="personita" class="fa-solid fa-user"></i></a>
 </header>
 
+<button id="boton-subir"><i class="bi bi-arrow-up-short"></i>
+    
 
+    si
+
+</button>
 
 <nav id="menu" [ngClass]="{'open': isMenuOpen}" *ngIf="shouldShow()">
     <ul>

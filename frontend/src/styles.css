@@ -1,5 +1,8 @@
 /* ---- */
 
+* {
+    transition: 0.15s;
+}
 
 :root {
 
@@ -10,9 +13,10 @@
     --principal-color-dark: rgb(15, 110, 58);
 
     --default-gray-high: #dddddd;
-    --default-gray: #bbbbbb;
-    --default-gray-dark: #9c9c9c;
+    --default-gray: #b4b4b4;
+    --default-gray-dark: #808080;
     --default-gray-darker: #4b4b4b;
+    --default-gray-darkerer: #3d3d3d;
     --dark-gray: #313131;
     --perfect-gray: #7F7F7F;
 
@@ -179,10 +183,11 @@ img {
 /* Páginas de "Registro" e "Iniciar sesión" */
 
 #x-mark {
-    color: #222;
+    color: var(--dark-gray);
 }
 #x-mark:hover {
-    color: #464646;
+    color: var(--default-gray-darker);
+    scale: 115%;
 }
 
 .close-form {
@@ -252,36 +257,55 @@ img {
 /* Estilos del foro */
 
 #foro-subtitulo {
-    color: #aaa;
+    color: var(--default-gray-dark);
     margin-bottom: 1rem;
 }
-#postear {
-    background-color: var(--principal-color);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-}
-#mensaje {
-    resize: none;
-}
-#titulo, #mensaje {
-    font-size: 20px;
-}
+
 .container article {
-    box-shadow: 3.5px 3.5px 10px rgba(0, 0, 0, 0.3);
-    transition: 0.15s;
-    background-color: #fff;
+    background-color: var(--dark-gray);
+    border: var(--borde-default);
 }
 .container article:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    filter: var(--shadow);
+    scale: 101%;
+    background-color: var(--default-gray-darkerer)
 }
 #nombre-usuario {
     margin-bottom: 0.25rem;
-    color: #000;
+    color: var(--default-gray-dark);
 }
 #fecha {
-    color: #aaa;
+    color: var(--default-gray-dark);
 }
 #contenido {
     margin-top: 0.6rem;
-    color: #000;
+    color: var(--default-gray);
+}
+
+#post-titulo {
+    color: var(--default-gray);
+}
+
+#titulo, #mensaje {
+    border: var(--borde-default);
+    background-color: var(--default-gray-dark);
+    text-decoration-color: #81d4fd;
+    font-size: 20px;
+    resize: none;
+}
+
+#enviar {
+    transition: 0.15s;
+    border: var(--borde-default)
+}
+
+#enviar:hover {
+    transition: 0.15s;
+    scale: 101%;
+    filter: var(--shadow);
+}
+
+
+::-webkit-input-placeholder {
+    color: var(--dark-gray)
 }

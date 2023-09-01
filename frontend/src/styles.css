@@ -87,7 +87,7 @@ header h1 {
 }
 #btn-menu:hover {
     color: var(--yellow-default);
-    scale: 110%;
+    scale: 105%;
 }
 
 #logoDiv {
@@ -101,7 +101,7 @@ header h1 {
     scale: 10%;
 }
 #logo:hover {
-    scale: 11%;
+    scale: 10.5%;
 }
 
 #personita {
@@ -122,7 +122,7 @@ header h1 {
 #btn-cuenta:hover {
     color: var(--yellow-default);
     border-color: var(--yellow-default);
-    scale: 110%;
+    scale: 105%;
 }
 
 #menu {
@@ -187,7 +187,6 @@ img {
 }
 #x-mark:hover {
     color: var(--default-gray-darker);
-    scale: 115%;
 }
 
 .close-form {
@@ -305,7 +304,20 @@ img {
     filter: var(--shadow);
 }
 
+#sign {
+    transition: 0.15s;
+    border: var(--borde-default);
+}
 
+#sign:hover {
+    transition: 0.15s;
+    scale: 102%;
+    filter: var(--shadow)
+}
+
+#nombre, #email, #contraseña1, #contraseña2, #contraseña {
+    border: var(--borde-default);
+}
 ::-webkit-input-placeholder {
     color: var(--dark-gray)
 }

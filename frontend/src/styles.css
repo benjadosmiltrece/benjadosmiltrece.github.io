@@ -1,8 +1,6 @@
 /* ---- */
 
-* {
-    transition: 0.15s;
-}
+
 
 :root {
 
@@ -235,7 +233,7 @@ img {
     padding: 12px;
     background-color: var(--principal-color-high);
     color: #fff;
-    transition: background-color 0.3s ease;
+
 }
 .form-btn:hover {
     background-color: var(--principal-color-high);
@@ -294,23 +292,23 @@ img {
 }
 
 #enviar {
-    transition: 0.15s;
+
     border: var(--borde-default)
 }
 
 #enviar:hover {
-    transition: 0.15s;
+
     scale: 101%;
     filter: var(--shadow);
 }
 
 #sign {
-    transition: 0.15s;
+
     border: var(--borde-default);
 }
 
 #sign:hover {
-    transition: 0.15s;
+
     scale: 102%;
     filter: var(--shadow)
 }

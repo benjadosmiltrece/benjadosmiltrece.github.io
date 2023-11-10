@@ -1,0 +1,14 @@
+body {
+    background-image: url(assets/fondo.png);
+    background-size: 75%;
+}
+
+h1 {
+    text-align: center;
+}
+
+#boton-casa {
+    scale: 20%;
+    background-color: #08000000;
+    border-color: #00000800;
+}

@@ -24,7 +24,6 @@ h1 {
 }
 
 #video {
-    position: absolute;
-    padding-left: 10%;
-    margin-right: auto
+    position: fixed;
+    margin-left: 100px;
 }

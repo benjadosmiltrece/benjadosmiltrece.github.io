@@ -13,17 +13,12 @@ h1 {
     margin: 0;
     padding: 0;
     margin-left: 20px;
-    display: block;
-}
-#boton-casa {
-    margin-bottom: 10px;
-}
-
-#boton-container {
-    position: fixed;
 }
 
 #video {
-    position: fixed;
-    margin-left: 100px;
+    margin-top: 20px;
+    margin-left: 5%;
+    display: flex;
+    justify-content: center;
 }
+

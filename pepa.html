@@ -16,8 +16,12 @@
     <h1>PEPATUBE</h1>
     <iframe id="video" width="1200" height="581" src="https://www.youtube.com/embed/Yeazlthytpc" title="Peppa Pig Full Episodes 🔴 LIVE! Full Episodes STREAMING NOW 🎭 Kids Videos 💕" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-    <input type="text" id="inputcomentario" placeholder="Comenta!" data-ddg-inputtype="identities.firstName">
-    <button id="btnAgregarComentario">→</button>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" id="inputcomentario" placeholder="Comenta!" data-ddg-inputtype="identities.firstName">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2"><button id="btnAgregarComentario" class="btn btn-primary">→</button></span>
+      </div>
+    </div>
     <ul id="listacomentarioes"></ul>
     <script>
         // Obtener elementos del DOM

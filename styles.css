@@ -26,3 +26,10 @@ h1 {
 #pp {
     margin-left: 40%;
 }
+
+#loader {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    margin: 0;
+}

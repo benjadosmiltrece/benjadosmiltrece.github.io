@@ -1,14 +1,21 @@
 body {
+    background-repeat: no-repeat;
     background-image: url(assets/fondo.png);
-    background-size: 75%;
+    background-size: cover;
+    background-color: #78C273;
 }
 
 h1 {
     text-align: center;
 }
 
+#boton-casa, #boton-yt, #boton-info {
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+    display: block;
+}
+
 #boton-casa {
-    scale: 20%;
-    background-color: #08000000;
-    border-color: #00000800;
+    margin-bottom: 10px;
 }

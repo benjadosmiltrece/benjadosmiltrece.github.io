@@ -15,13 +15,16 @@ h1 {
     margin-left: 20px;
     display: block;
 }
-
 #boton-casa {
     margin-bottom: 10px;
 }
 
-#video {
+#boton-container {
     position: fixed;
-    margin-left: 13%;
+}
+
+#video {
+    position: absolute;
+    padding-left: 10%;
     margin-right: auto
 }

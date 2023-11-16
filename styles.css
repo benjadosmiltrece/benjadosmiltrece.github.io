@@ -19,3 +19,9 @@ h1 {
 #boton-casa {
     margin-bottom: 10px;
 }
+
+#video {
+    position: fixed;
+    margin-left: 13%;
+    margin-right: auto
+}

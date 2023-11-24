@@ -35,5 +35,6 @@ h1 {
 }
 
 pre {
-    text-shadow: 0 0 5px #ffffff;
+    font-weight: bolder;
+    text-shadow: 0 0 20px #8DBAE3;
 }

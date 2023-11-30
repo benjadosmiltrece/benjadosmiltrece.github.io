@@ -46,3 +46,11 @@ p {
 #momos {
     resize: none;
 }
+
+footer {
+    background-color: #34722e;
+    text-align: center;
+    text-shadow: 0 0 5px #000;
+    color: #fff;
+    padding: 10px;
+}

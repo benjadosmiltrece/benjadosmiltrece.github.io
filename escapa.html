@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corre</title>
+    <style>
+        *{
+            transition: 250ms;
+        }
+        #run{
+            top: 54.5px;
+            left: 54.5px;
+            position: absolute;
+            width: 54px;
+            border-radius: 100%;
+            border-width: 4px;
+            border-style: solid;
+            border-color: red;
+            color: red;
+            background-color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 200%;
+        }
+        #run-hitbox{
+            z-index: -1;
+            position: absolute;
+            width: 163px;
+            border-radius: 100%;
+            border-width: 4px;
+            border-style: solid;
+            border-color: #00000000;
+            color: #00000000;
+            background-color: #00000000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 700%;
+        }
+        #caja{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="caja">
+        <button onclick=ganaste() id="run">O</button>
+        <button onmouseenter=escapismo() id="run-hitbox">O</button>
+    </div>
+<script>
+
+    function escapismo(){
+
+        let anchura = window.screen.availWidth - 163;
+        let altura = window.screen.availHeight - 248;
+        let caja = document.getElementById("caja");
+
+        caja.style.top = String(Math.random() * (altura + 0) - 0) + "px";
+        caja.style.left = String(Math.random() * (anchura + 0) - 0) + "px";
+    }
+
+    function ganaste(){
+        alert("Me atrapaste owo")
+    }
+
+</script>    
+</body>
+</html>

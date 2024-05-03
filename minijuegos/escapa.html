@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corre</title>
     <style>
-        *{
-            transition: 250ms;
-        }
         #run{
             top: 54.5px;
             left: 54.5px;
@@ -23,7 +20,7 @@
             font-size: 200%;
         }
         #run-hitbox{
-            z-index: -1;
+            z-index: -5;
             position: absolute;
             width: 163px;
             border-radius: 100%;
@@ -39,6 +36,7 @@
             position: absolute;
             top: 0px;
             left: 0px;
+            transition: 250ms;
         }
 
 
@@ -46,25 +44,55 @@
 </head>
 <body>
     <div id="caja">
-        <button onclick=ganaste() id="run">O</button>
+        <button class="shadow-element" onclick=ganaste() id="run">O</button>
         <button onmouseenter=escapismo() id="run-hitbox">O</button>
     </div>
 <script>
+function adjustBoxShadow() {
+    const elements = document.querySelectorAll(".shadow-element");
+    const centerX = window.innerWidth / 2; // Calculate the center of the screen
+    const centerY = window.innerHeight / 2;
+
+    elements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const distanceFromCenterX = rect.left + rect.width / 2 - centerX;
+        const distanceFromCenterY = rect.top + rect.height / 2 - centerY;
+
+        // Calculate the shadow offsets based on distance from center
+        const xOffset = distanceFromCenterX / 40;
+        const yOffset = distanceFromCenterY / 40;
+
+        // Set the box shadow with the calculated offsets
+        element.style.boxShadow = `${-xOffset}px ${-yOffset}px 0px #d60000`;
+    });
+
+    // Request next frame
+    requestAnimationFrame(adjustBoxShadow);
+}
+
+// Initial call to start the animation loop
+adjustBoxShadow();
+
+
+    // Call the function once when the document is loaded
+    document.addEventListener("DOMContentLoaded", adjustBoxShadow);
+
+    // Call the function whenever the window is resized
+    window.addEventListener("resize", adjustBoxShadow);
 
     function escapismo(){
 
-        let anchura = window.screen.availWidth - 163;
-        let altura = window.screen.availHeight - 248;
-        let caja = document.getElementById("caja");
+    let anchura = window.screen.availWidth - 163;
+    let altura = window.screen.availHeight - 248;
+    let caja = document.getElementById("caja");
 
-        caja.style.top = String(Math.random() * (altura + 0) - 0) + "px";
-        caja.style.left = String(Math.random() * (anchura + 0) - 0) + "px";
+    caja.style.top = String(Math.random() * (altura + 0) - 0) + "px";
+    caja.style.left = String(Math.random() * (anchura + 0) - 0) + "px";
     }
 
     function ganaste(){
-        alert("Me atrapaste owo");
+    alert("Me atrapaste owo");
     }
-
-</script>    
+</script>
 </body>
 </html>

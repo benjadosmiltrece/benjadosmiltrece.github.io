@@ -43,7 +43,7 @@
             transition: 300ms;
         }
         #run2{
-            z-index: -2;
+            z-index: -1;
             top: 54.5px;
             left: 54.5px;
             position: absolute;
@@ -68,6 +68,40 @@
         <button id="run-hitbox">O</button>
     </div>
 <script>
+
+var element = document.getElementById('run-hitbox');
+var isTransitioning = false; // Flag variable to track transition state
+
+document.addEventListener('mousemove', function(e) {
+    if (!isTransitioning && element.contains(e.target)) {
+        // Mouse is over the element and not transitioning
+        console.log('Mouse is over the element');
+        escapismo();
+    } else {
+        // Mouse is not over the element or transitioning
+        console.log('Mouse is not over the element');
+    }
+});
+
+function escapismo() {
+    // Set transition state to true
+    isTransitioning = true;
+    setTimeout(function() {
+        // After 50ms, set transition state to false
+        isTransitioning = false;
+    }, 100);
+
+    let anchura = window.screen.availWidth - 163;
+    let altura = window.screen.availHeight - 248;
+    let caja = document.getElementById("caja");
+
+    caja.style.top = String(Math.random() * (altura + 0) - 0) + "px";
+    caja.style.left = String(Math.random() * (anchura + 0) - 0) + "px";
+}
+
+
+
+
 function adjustBoxShadow() {
     const elements = document.querySelectorAll(".shadow-element");
     const centerX = window.innerWidth / 2; // Calculate the center of the screen
@@ -100,16 +134,6 @@ adjustBoxShadow();
     // Call the function whenever the window is resized
     window.addEventListener("resize", adjustBoxShadow);
 
-    function escapismo(){
-
-    let anchura = window.screen.availWidth - 163;
-    let altura = window.screen.availHeight - 248;
-    let caja = document.getElementById("caja");
-
-    caja.style.top = String(Math.random() * (altura + 0) - 0) + "px";
-    caja.style.left = String(Math.random() * (anchura + 0) - 0) + "px";
-    }
-
     function ganaste(){
     alert("Me atrapaste owo");
     }
@@ -125,8 +149,8 @@ adjustBoxShadow();
         const distanceFromCenterY = rect.top + rect.height / 2 - centerY;
 
         // Calculate the shadow offsets based on distance from center
-        const xOffset = distanceFromCenterX / 30;
-        const yOffset = distanceFromCenterY / 30;
+        const xOffset = distanceFromCenterX / 25;
+        const yOffset = distanceFromCenterY / 25;
 
         // Set the box shadow with the calculated offsets
         element.style.boxShadow = `${xOffset}px ${yOffset}px 2px #00000020`;

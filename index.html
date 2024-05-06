@@ -33,6 +33,8 @@
         }
 
         img{
+            display: flex;
+            justify-content: center;
             border-color: #2c2c2c;
             border-width: 3px;
             border-style: solid;
@@ -44,6 +46,8 @@
             filter: brightness(1.0);
         }
         button{
+            display: flex;
+            justify-content: center;
             margin-bottom: 25px;
             margin-top: 25px;
             width: 200px;
@@ -74,12 +78,12 @@
 <script>
     function adjustBoxShadow() {
         const elements = document.querySelectorAll(".shadow-element");
-        const centerX = window.innerWidth / 2; // Calculate the center of the screen
+        const centerX = (window.innerWidth / 2); // Calculate the center of the screen
 
         elements.forEach(element => {
             const rect = element.getBoundingClientRect();
             const distanceFromCenter = Math.abs(rect.left + rect.width / 2 - centerX);
-            const xOffset = Math.max(0, distanceFromCenter / 20) - 4; // Subtract 4px offset and adjust for the shadow effect
+            const xOffset = Math.max(0, distanceFromCenter / 20); - 4// Subtract 4px offset and adjust for the shadow effect
 
             // Calculate initial X-offset for the hovered effect
             const initialXOffset = Math.max(0, xOffset);

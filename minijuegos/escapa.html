@@ -21,7 +21,22 @@
             color: red;
             background-color: #eee;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 200%;
+            font-size: 200%;   
+        }
+        #circle-trail{
+            top: 54.5px;
+            left: 54.5px;
+            position: absolute;
+            width: 54px;
+            border-radius: 100%;
+            border-width: 4px;
+            border-style: solid;
+            border-color: red;
+            color: red;
+            background-color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 200%;   
+            filter: opacity(50%);
         }
         #run-hitbox{
             z-index: 5;
@@ -41,6 +56,14 @@
             top: 0px;
             left: 0px;
             transition: 300ms;
+        }
+        #run-trail{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transition: 300ms;
+            z-index: -2;
+            transition-delay: 25ms;
         }
         #run2{
             z-index: -1;
@@ -66,6 +89,9 @@
         <button class="shadow-element" onclick=ganaste() id="run">O</button>
         <button class="shadow-element2" id="run2">O</button>
         <button id="run-hitbox">O</button>
+    </div>
+    <div id="run-trail">
+        <button id="circle-trail">O</button>
     </div>
 <script>
 
@@ -94,9 +120,13 @@ function escapismo() {
     let anchura = window.screen.availWidth - 173;
     let altura = window.screen.availHeight - 258;
     let caja = document.getElementById("caja");
+    let trail = document.getElementById('run-trail');
 
     caja.style.top = String(Math.random() * (altura + 0) - 0) + "px";
     caja.style.left = String(Math.random() * (anchura + 0) - 0) + "px";
+
+    trail.style.top = caja.style.top;
+    trail.style.left = caja.style.left;
 }
 
 

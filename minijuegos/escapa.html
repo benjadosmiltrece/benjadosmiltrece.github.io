@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../thumbs/icons/icononola.png">
     <title>Corre</title>
     <style>
         html{
-            background: radial-gradient(#fff, #707070);
+            background: radial-gradient(#fff, #a3a3a3);
             height: 100svh;
         }
         #run{
@@ -53,14 +54,14 @@
         }
         #caja{
             position: absolute;
-            top: 0px;
-            left: 0px;
+            top: 37%;
+            left: 42.5%;
             transition: 300ms;
         }
         #run-trail{
             position: absolute;
-            top: 0px;
-            left: 0px;
+            top: 37%;
+            left: 42.5%;
             transition: 300ms;
             z-index: -2;
             transition-delay: 25ms;
@@ -80,11 +81,27 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 200%;
         }
+        #flecha-back{
+            font-size: 200%;
+            border-color: #000000;
+            border-style: solid;
+            border-width: 2.5px;
+            border-radius: 100%;
+            width: 66.5px;
+            display:flexbox;
+            margin: 0;
+            position: fixed;
+            padding-top: 5px;
+            background-color: #ffffff00;
+            filter: opacity(15%);
+        }
 
 
     </style>
 </head>
 <body>
+    <a href="../index.html"><button id="flecha-back">🡠</button></a>
+    
     <div id="caja">
         <button class="shadow-element" onclick=ganaste() id="run">O</button>
         <button class="shadow-element2" id="run2">O</button>

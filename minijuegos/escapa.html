@@ -187,7 +187,7 @@ var contadorMuerte = 10;
 
 if(true){
     setTimeout(start, 10);
-    setInterval(contador, 1000);
+    setInterval(contador, 1111);
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
@@ -196,7 +196,6 @@ function contador(){
     muerteTexto.textContent=String(contadorMuerte);
     if(contadorMuerte <= 0){
         alert('Perdiste UnU')
-        alert('Puntos coneguidos:' + puntajeNumero)
         location.reload();
         return;
     }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    html{
+        background: radial-gradient(#fff, #a3a3a3);
+        height: 100svh;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    #flecha-back{
+            font-size: 200%;
+            border-color: #000000;
+            border-style: solid;
+            border-width: 4px;
+            border-radius: 100%;
+            width: 0;
+            display:flexbox;
+            margin-top: 2%;
+            margin-left: 2%;
+            position: fixed;
+            padding-bottom: 9.5px;
+            background-color: #ffffff00;
+            filter: opacity(15%);
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html"><button id="flecha-back">←</button></a>
+
+    <script>
+    let flecha = document.getElementById('flecha-back');
+    window.onload = start;
+
+    function start(){
+        flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
+    }
+
+    </script>
+</body>
+</html>

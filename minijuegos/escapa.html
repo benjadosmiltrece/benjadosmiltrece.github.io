@@ -222,7 +222,8 @@ function contador(){
     }
     muerteTexto.textContent=String(contadorMuerteFixed);
     if(contadorMuerte <= 0){
-        document.getElementById('muerte').textContent = '0';
+        contadorMuerte = 0;
+        document.getElementById('muerte').textContent = '0.0';
         setTimeout(murio, 100)
         muerte2 = true;
         return;
@@ -231,6 +232,7 @@ function contador(){
 
 document.onkeypress = function (f) {
     contadorMuerte = 0;
+    document.getElementById('muerte').textContent = '0.0';
 }
 
 function murio(){

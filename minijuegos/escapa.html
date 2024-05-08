@@ -236,8 +236,8 @@ function start(){
     caraPuntaje.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width) + 'px';
 
     flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
-    cajaRecord.style.marginTop = String(window.screen.availHeight - 180) + 'px';
-    cajaMuerte.style.marginTop = String(window.screen.availHeight - 280) + 'px';
+    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2) + 'px';
+    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.3) + 'px';
 
     caja.style.top = String(runh.getBoundingClientRect().height * 1.56) + 'px';
     caja.style.left = String(runh.getBoundingClientRect().width * 3.625) + 'px';

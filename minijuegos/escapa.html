@@ -139,7 +139,7 @@
         }
         #record{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin-top: -35%;
+            margin-top: -20%;
         }
         P{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -154,6 +154,10 @@
         }
         #muerte{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #muerteP{
+            display:flexbox;
+            position: absolute;
         }
 
 
@@ -175,7 +179,10 @@
     </div>
     <div id="caja-puntaje"><h1 id="puntaje">0</h1></div>
     <div id="caja-record"><p>Record:</p><h1 id="record">0</h1></div>
-    <div id="caja-muerte"><p id="muerteP">Muerte:</p><h1 id="muerte">10</h1></div>
+    <div id="caja-muerte">
+        <p id="muerteP">Muerte:</p><br>
+        <h1 id="muerte">10</h1>
+    </div>
 <script>
 
 var element = document.getElementById('run-hitbox');
@@ -236,8 +243,8 @@ function start(){
     caraPuntaje.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width) + 'px';
 
     flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
-    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2.3) + 'px';
-    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.5) + 'px';
+    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2) + 'px';
+    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.7) + 'px';
     caja.style.top = caraPuntaje.style.top;
     caja.style.left = caraPuntaje.style.left;
 

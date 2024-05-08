@@ -47,9 +47,9 @@
             position: absolute;
             top: 37%;
             left: 42.5%;
-            transition: 300ms;
+            transition: 0ms;
             z-index: -2;
-            transition-delay: 10ms;
+            transition-delay: 0ms;
         }
         #circle-trail{
             top: 54.5px;
@@ -70,9 +70,9 @@
             position: absolute;
             top: 37%;
             left: 42.5%;
-            transition: 300ms;
+            transition: 0ms;
             z-index: -2;
-            transition-delay: 30ms;
+            transition-delay: 0ms;
         }
         #circle-trail2{
             top: 54.5px;
@@ -191,12 +191,13 @@ if(true){
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
-    contadorMuerte -= ((0.01+(puntajeNumero / 100)));
-    contadorMuerte += 0.01;
+    contadorMuerte -= ((0.1+(puntajeNumero / 50)));
+    contadorMuerte += 0.1;
     muerteTexto.textContent=String(contadorMuerte);
     if(contadorMuerte <= 0){
         alert('Perdiste UnU')
         alert('Puntos coneguidos:' + puntajeNumero)
+        location.reload();
         return;
     }
 }
@@ -209,7 +210,8 @@ function start(){
     let recordP = document.getElementById('record');
     let caraPuntaje = document.getElementById('caja-puntaje');
     let caja = document.getElementById("caja");
-    let caja2 = document.getElementById("caja");
+    let caja2 = document.getElementById("run-trail");
+    let caja3 = document.getElementById("run-trail2");
     let runh = document.getElementById("run-hitbox");
     recordP.textContent=String(record);
     caraPuntaje.style.top = String(window.screen.availHeight / 2 - caraPuntaje.getBoundingClientRect().height) + 'px';
@@ -217,6 +219,12 @@ function start(){
 
     caja.style.top = String(runh.getBoundingClientRect().height * 1.56) + 'px';
     caja.style.left = String(runh.getBoundingClientRect().width * 3.625) + 'px';
+
+    caja2.style.top = caja.style.top;
+    caja3.style.top = caja.style.top;
+
+    caja2.style.left = caja.style.left;
+    caja3.style.left = caja.style.left;
 }
 function escapismo() {
     // Set transition state to true
@@ -238,9 +246,11 @@ function escapismo() {
     contadorMuerte = 10;
     muerteTexto.textContent=String(contadorMuerte);
 
-    caja.style.transition = String(300 * (1+(puntajeNumero / 1000))) + 'ms'
-    trail.style.transition = String(300 * (1+(puntajeNumero / 1000))) + 'ms'
-    trail2.style.transition = String(300 * (1+(puntajeNumero / 1000))) + 'ms'
+    caja.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'
+    trail.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'
+    trail2.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'
+    trail.style.transitionDelay = '10ms'
+    trail2.style.transitionDelay = '30ms'
 
     caja.style.top = String(Math.random() * (altura) - caja.getBoundingClientRect().height) + "px";
     caja.style.left = String(Math.random() * (anchura) - caja.getBoundingClientRect().width) + "px";

@@ -146,6 +146,7 @@
             font-weight: bold;
         }
         #caja-muerte{
+            z-index: -10;
             position: absolute;
             margin-top: 33.5%;
             margin-left: 2%;
@@ -238,8 +239,8 @@ function start(){
     flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
     cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2.3) + 'px';
     cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.5) + 'px';
-    caja.style.top = String((window.screen.availHeight / 2)) + 'px';
-    caja.style.left = String((window.screen.availHeight/ 2)) + 'px';
+    caja.style.top = caraPuntaje.style.top;
+    caja.style.left = caraPuntaje.style.left;
 
     caja2.style.top = caja.style.top;
     caja3.style.top = caja.style.top;

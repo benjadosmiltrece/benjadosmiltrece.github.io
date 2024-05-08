@@ -203,6 +203,7 @@ var contadorMuerte = 10;
 
 var record = parseInt(localStorage['puntajeNumeroCache']) || 0;
 var puntajeNumero = 0;
+var contadorMuerteFixed;
 if(true){
     setTimeout(start, 10);
     setInterval(contador, 1);
@@ -211,11 +212,12 @@ function contador(){
     let muerteTexto = document.getElementById('muerte');
     if(puntajeNumero / 1000 < 0.1){
         contadorMuerte -= puntajeNumero / 1000;
+        contadorMuerteFixed = (Math.round(contadorMuerte * 100) / 100).toFixed(1);
     }
     if(puntajeNumero / 1000 > 0.1){
         contadorMuerte -= 0.1;
     }
-    muerteTexto.textContent=String(contadorMuerte);
+    muerteTexto.textContent=String(contadorMuerteFixed);
     if(contadorMuerte <= 0){
         setTimeout(murio, 100);
         document.getElementById('muerte').textContent = '0';
@@ -271,7 +273,7 @@ function escapismo() {
     let recordP = document.getElementById('record');
     let muerteTexto = document.getElementById('muerte');
 
-    contadorMuerte = 10;
+    contadorMuerte = 9.9;
     muerteTexto.textContent=String(contadorMuerte);
 
     caja.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'

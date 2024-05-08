@@ -9,6 +9,7 @@
         html{
             background: radial-gradient(#fff, #a3a3a3);
             height: 100svh;
+            overflow-y: hidden;
         }
         #run{
             top: 54.5px;
@@ -246,8 +247,8 @@ function start(){
     caraPuntaje.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width) + 'px';
 
     flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
-    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2.8) + 'px';
-    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 3.4) + 'px';
+    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2) + 'px';
+    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.65) + 'px';
 
     caja.style.top = String(window.screen.availHeight / 2 - caraPuntaje.getBoundingClientRect().height - 30) + 'px';
     caja.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width - 72) + 'px';

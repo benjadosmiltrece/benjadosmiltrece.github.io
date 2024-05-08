@@ -202,6 +202,7 @@ document.addEventListener('mousemove', function(e) {
 });
 
 var contadorMuerte = 10;
+var muerte2 = true;
 
 var record = parseInt(localStorage['puntajeNumeroCache']) || 0;
 var puntajeNumero = 0;
@@ -221,16 +222,23 @@ function contador(){
     }
     muerteTexto.textContent=String(contadorMuerteFixed);
     if(contadorMuerte <= 0){
-        setTimeout(murio, 100);
-        alert('Perdiste UnU');
+        murio();
         document.getElementById('muerte').textContent = '0';
         return;
     }
 }
-function murio(){
-    location.reload();
+
+document.onkeypress = function (f) {
+    contadorMuerte = 0;
 }
 
+function murio(){
+    if(muerte2){
+        muerte2 = false;
+        alert('Perdiste UnU');
+        location.reload();
+    }
+}
 function start(){
     let flecha = document.getElementById('flecha-back');
     let puntaje = document.getElementById('puntaje');

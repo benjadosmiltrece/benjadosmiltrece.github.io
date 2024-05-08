@@ -9,7 +9,7 @@
     <title>pepa</title>
 </head>
     <body>
-
+        <a href="../index.html"><button id="flecha-back">←</button></a>
         <div id="loader"></div>
         <script type="text/javascript">
           $(window).load(function() {      //Do the code in the {}s when the window has loaded 
@@ -66,5 +66,10 @@
         </div>
         <footer>-- Pepa is love, pepa is life. --</footer>
         <script src="../bootstrap/bootstrap.min.js"></script>
+        <script>
+            let flecha = document.getElementById('flecha-back');
+            flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
+
+        </script>
     </body>
 </html>

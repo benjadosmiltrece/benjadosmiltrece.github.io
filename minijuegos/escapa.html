@@ -196,6 +196,7 @@ function contador(){
     }
     muerteTexto.textContent=String(contadorMuerte);
     if((puntajeNumero / 20) >= contadorMuerte){
+        contadorMuerte -= 9;
         contadorActivo = false;
     }
     if(contadorMuerte <= 0){

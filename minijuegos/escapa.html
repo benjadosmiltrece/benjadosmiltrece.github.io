@@ -212,13 +212,12 @@ function contador(){
     if(contadorMuerte <= 0){
         setTimeout(murio, 100);
         document.getElementById('muerte').textContent = '0';
-        
+        return;
     }
 }
 function murio(){
     alert('Perdiste UnU');
         location.reload();
-        return;
 }
 
 function start(){

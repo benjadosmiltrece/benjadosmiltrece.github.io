@@ -184,16 +184,20 @@ document.addEventListener('mousemove', function(e) {
 });
 
 var contadorMuerte = 10;
-
+var contadorActivo = true;
 if(true){
     setTimeout(start, 10);
     setInterval(contador, 1111);
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
-    contadorMuerte -= ((0.1+(puntajeNumero / 50)));
-    contadorMuerte += 0.1;
+    if(contadorActivo == true){
+        contadorMuerte -= (((puntajeNumero / 20)));
+    }
     muerteTexto.textContent=String(contadorMuerte);
+    if((puntajeNumero / 20) >= contadorMuerte){
+        contadorActivo = false;
+    }
     if(contadorMuerte <= 0){
         alert('Perdiste UnU')
         location.reload();

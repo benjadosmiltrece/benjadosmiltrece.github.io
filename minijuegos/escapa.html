@@ -255,6 +255,7 @@ function contador(){
         setTimeout(murio, 10)
         muerte2 = true;
         muerte3 = false;
+        document.getElementById('muerte').textContent = '0.0';
         return;
     }
 }
@@ -269,6 +270,7 @@ function murio(){
     if(muerte2 = true){
         muerte2 = false;
         alert('Perdiste UnU');
+        document.getElementById('muerte').textContent = '0.0';
     }
 }
 function recargar(){
@@ -297,8 +299,8 @@ function start(){
 
     flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
     recargar.style.width = String(recargar.getBoundingClientRect().height) + 'px';
-    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2) + 'px';
-    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.65) + 'px';
+    cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 1.9) + 'px';
+    cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.55) + 'px';
 
     caja.style.top = String(window.screen.availHeight / 2 - caraPuntaje.getBoundingClientRect().height - 30) + 'px';
     caja.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width - 72) + 'px';

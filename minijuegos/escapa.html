@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="html" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../thumbs/icons/icononola.png">
     <title>Corre</title>
     <style>
+        * {
+            user-select: none;
+        }
         html{
             background: radial-gradient(#fff, #a3a3a3);
             height: 100svh;
             overflow-y: hidden;
             overflow-x: hidden;
+            display: none;
         }
         #run{
             top: 54.5px;
@@ -106,22 +110,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 200%;
         }
-        #flecha-back{
-            font-size: 200%;
-            border-color: #000000;
-            border-style: solid;
-            border-width: 4px;
-            border-radius: 100%;
-            width: 0;
-            display:flexbox;
-            margin-top: 2%;
-            margin-left: 2%;
-            position: fixed;
-            padding-bottom: 9.5px;
-            background-color: #ffffff00;
-            filter: opacity(15%);
-            font-weight: bolder;
-        }
         #caja-puntaje{
             z-index: -10;
             position: fixed;
@@ -168,12 +156,43 @@
             font-weight: bold;
             filter: opacity(25%);
         }
-
-
+        #flecha-back{
+            font-size: 200%;
+            border-color: #000000;
+            border-style: solid;
+            border-width: 4px;
+            border-radius: 100%;
+            width: 0;
+            display:flexbox;
+            margin-top: 2%;
+            margin-left: 2%;
+            position: fixed;
+            padding-bottom: 9.5px;
+            background-color: #ffffff00;
+            filter: opacity(15%);
+            font-weight: bolder;
+        }
+        #flecha-reload{
+            font-size: 200%;
+            border-color: #000000;
+            border-style: solid;
+            border-width: 4px;
+            border-radius: 100%;
+            width: 65px;
+            display:flexbox;
+            margin-top: 10%;
+            margin-left: 2%;
+            position: fixed;
+            padding-bottom: 9.5px;
+            background-color: #ffffff00;
+            filter: opacity(15%);
+            font-weight: bolder;
+        }
     </style>
 </head>
 <body>
     <a href="escapaMenu.html"><button id="flecha-back">←</button></a>
+    <button onclick="recargar()" id="flecha-reload">⟲</button>
     
     <div id="caja">
         <button class="shadow-element" onclick=ganaste() id="run">O</button>
@@ -213,29 +232,29 @@ document.addEventListener('mousemove', function(e) {
 
 var contadorMuerte = 10;
 var muerte2 = false;
-
+var muerte3 = true;
 var record = parseInt(localStorage['puntajeNumeroCache']) || 0;
 var puntajeNumero = 0;
 var contadorMuerteFixed;
-if(true){
+if(muerte3 && true){
     setTimeout(start, 10);
     setInterval(contador, 1);
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
-    if(puntajeNumero / 1000 < 0.1){
+    if(muerte3 && puntajeNumero / 1000 < 0.1){
         contadorMuerte -= puntajeNumero / 1000;
         contadorMuerteFixed = (Math.round(contadorMuerte * 100) / 100).toFixed(1);
     }
-    if(puntajeNumero / 1000 > 0.1){
+    if(muerte3 && puntajeNumero / 1000 > 0.1){
         contadorMuerte -= 0.1;
     }
     muerteTexto.textContent=String(contadorMuerteFixed);
-    if(contadorMuerte <= 0){
-        contadorMuerte = 0;
+    if(muerte3 && contadorMuerte <= 0){
         document.getElementById('muerte').textContent = '0.0';
-        setTimeout(murio, 100)
+        setTimeout(murio, 10)
         muerte2 = true;
+        muerte3 = false;
         return;
     }
 }
@@ -246,14 +265,20 @@ document.onkeypress = function (f) {
 }
 
 function murio(){
-    if(muerte2){
+    document.getElementById('muerte').textContent = '0.0';
+    if(muerte2 = true){
         muerte2 = false;
         alert('Perdiste UnU');
-        location.reload();
     }
 }
+function recargar(){
+    location.reload();
+}
+
 function start(){
+    let html = document.getElementById('html');
     let flecha = document.getElementById('flecha-back');
+    let recargar = document.getElementById('flecha-reload');
     let puntaje = document.getElementById('puntaje');
     let recordP = document.getElementById('record');
     let caraPuntaje = document.getElementById('caja-puntaje');
@@ -263,11 +288,15 @@ function start(){
     let caja2 = document.getElementById("run-trail");
     let caja3 = document.getElementById("run-trail2");
     let runh = document.getElementById("run-hitbox");
+
+    html.style.display = 'unset';
+
     recordP.textContent=String(record);
     caraPuntaje.style.top = String(window.screen.availHeight / 2 - caraPuntaje.getBoundingClientRect().height) + 'px';
     caraPuntaje.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width) + 'px';
 
     flecha.style.width = String(flecha.getBoundingClientRect().height) + 'px';
+    recargar.style.width = String(recargar.getBoundingClientRect().height) + 'px';
     cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 2) + 'px';
     cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.65) + 'px';
 

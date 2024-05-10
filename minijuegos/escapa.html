@@ -242,16 +242,16 @@ if(muerte3 && true){
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
-    if(muerte3 && puntajeNumero / 1000 < 0.1){
-        contadorMuerte -= puntajeNumero / 1000;
+    if(muerte3 && puntajeNumero / 3000 < 0.1){
+        contadorMuerte -= puntajeNumero / 3000;
         contadorMuerteFixed = (Math.round(contadorMuerte * 100) / 100).toFixed(1);
+        muerteTexto.textContent=String(contadorMuerteFixed);
     }
-    if(muerte3 && puntajeNumero / 1000 > 0.1){
+    if(muerte3 && puntajeNumero / 3000 > 0.1){
         contadorMuerte -= 0.1;
+        muerteTexto.textContent=String(contadorMuerteFixed);
     }
-    muerteTexto.textContent=String(contadorMuerteFixed);
     if(muerte3 && contadorMuerte <= 0){
-        document.getElementById('muerte').textContent = '0.0';
         setTimeout(murio, 10)
         muerte2 = true;
         muerte3 = false;
@@ -260,18 +260,23 @@ function contador(){
     }
 }
 
-document.onkeypress = function (f) {
-    contadorMuerte = 0;
+document.onkeypress = function(f) {
+    muerte2 = true;
+    muerte3 = false;
     document.getElementById('muerte').textContent = '0.0';
+    contadorMuerte = 0;
 }
 
 function murio(){
     document.getElementById('muerte').textContent = '0.0';
     if(muerte2 = true){
         muerte2 = false;
-        alert('Perdiste UnU');
         document.getElementById('muerte').textContent = '0.0';
+        alert('Perdiste UnU');
     }
+if(muerte3==false){
+    document.getElementById('muerte').textContent = '0.0';
+}
 }
 function recargar(){
     location.reload();
@@ -331,9 +336,9 @@ function escapismo() {
     contadorMuerte = 9.9;
     muerteTexto.textContent=String(contadorMuerte);
 
-    caja.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'
-    trail.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'
-    trail2.style.transition = String(300 * (1+(puntajeNumero / 100))) + 'ms'
+    caja.style.transition = String(300 - (puntajeNumero / 100)) + 'ms'
+    trail.style.transition = String(300 - (puntajeNumero / 100)) + 'ms'
+    trail2.style.transition = String(300 - (puntajeNumero / 100)) + 'ms'
     trail.style.transitionDelay = '10ms'
     trail2.style.transitionDelay = '30ms'
 

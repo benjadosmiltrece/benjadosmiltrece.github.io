@@ -24,7 +24,7 @@
             top: 54.5px;
             left: 54.5px;
             position: absolute;
-            width: 54px;
+            width: 50px;
             border-radius: 100%;
             border-width: 4px;
             border-style: solid;
@@ -65,7 +65,7 @@
             top: 54.5px;
             left: 54.5px;
             position: absolute;
-            width: 54px;
+            width: 50px;
             border-radius: 100%;
             border-width: 4px;
             border-style: solid;
@@ -88,7 +88,7 @@
             top: 54.5px;
             left: 54.5px;
             position: absolute;
-            width: 54px;
+            width: 50px;
             border-radius: 100%;
             border-width: 4px;
             border-style: solid;
@@ -194,7 +194,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
     <a href="escapaMenu.html"><button id="flecha-back">←</button></a>
     <button onclick="recargar()" id="flecha-reload">⟲</button>
     
@@ -243,9 +243,16 @@ var puntajeNumero = 0;
 var contadorMuerteFixed;
 if(muerte3 && true){
     setTimeout(start, 10);
-}
-if(empezo){
     setInterval(contador, puntajeNumero / 3000);
+}
+if(true){
+    setInterval(tamaño, 1);
+}
+
+function tamaño(){
+    document.getElementById("caja").style.scale = String((window.screen.availHeight + window.screen.availWidth) / 20) + '%';
+    document.getElementById("run-trail").style.scale = String((window.screen.availHeight + window.screen.availWidth) / 20) + '%';
+    document.getElementById("run-trail2").style.scale = String((window.screen.availHeight + window.screen.availWidth) / 20) + '%';
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
@@ -277,9 +284,9 @@ document.onkeypress = function(f) {
 function murio(){
     document.getElementById('muerte').textContent = '0.0';
     if(muerte2 = true){
-        muerte2 = false;
         document.getElementById('muerte').textContent = '0.0';
         alert('Perdiste UnU');
+        muerte2 = false;
     }
 if(muerte3==false){
     document.getElementById('muerte').textContent = '0.0';
@@ -314,7 +321,7 @@ function start(){
     cajaRecord.style.marginTop = String(window.screen.availHeight - cajaRecord.getBoundingClientRect().height * 1.9) + 'px';
     cajaMuerte.style.marginTop = String(window.screen.availHeight - cajaMuerte.getBoundingClientRect().height * 2.55) + 'px';
 
-    caja.style.top = String(window.screen.availHeight / 2 - caraPuntaje.getBoundingClientRect().height - 30) + 'px';
+    caja.style.top = String(window.screen.availHeight / 2 - caraPuntaje.getBoundingClientRect().height - 35) + 'px';
     caja.style.left = String(window.screen.availWidth / 2 - caraPuntaje.getBoundingClientRect().width - 72) + 'px';
 
     caja2.style.top = caja.style.top;

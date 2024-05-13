@@ -2,12 +2,16 @@
 <html id="html" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <link rel="icon" type="image/x-icon" href="../thumbs/icons/icononola.png">
     <title>Corre</title>
     <style>
         * {
             user-select: none;
+        }
+        :root {
+            touch-action: pan-x pan-y;
+            height: 100% 
         }
         html{
             background: radial-gradient(#fff, #a3a3a3);
@@ -233,12 +237,15 @@ document.addEventListener('mousemove', function(e) {
 var contadorMuerte = 10;
 var muerte2 = false;
 var muerte3 = true;
+var empezo = false;
 var record = parseInt(localStorage['puntajeNumeroCache']) || 0;
 var puntajeNumero = 0;
 var contadorMuerteFixed;
 if(muerte3 && true){
     setTimeout(start, 10);
-    setInterval(contador, 1);
+}
+if(empezo){
+    setInterval(contador, puntajeNumero / 3000);
 }
 function contador(){
     let muerteTexto = document.getElementById('muerte');
@@ -316,8 +323,9 @@ function start(){
     caja2.style.left = caja.style.left;
     caja3.style.left = caja.style.left;
 }
-function escapismo() {
+function escapismo(){
     // Set transition state to true
+    empezo = true;
     isTransitioning = true;
     setTimeout(function() {
         // After 50ms, set transition state to false
@@ -333,7 +341,7 @@ function escapismo() {
     let recordP = document.getElementById('record');
     let muerteTexto = document.getElementById('muerte');
 
-    contadorMuerte = 9.9;
+    contadorMuerte = 10.0;
     muerteTexto.textContent=String(contadorMuerte);
 
     caja.style.transition = String(300 - (puntajeNumero / 100)) + 'ms'

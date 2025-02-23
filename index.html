@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="html" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,15 @@
     <title>The Hub</title>
     <style>
 
+        #night-mode{
+            border-radius: 10px;
+            margin: 5px 25px;
+            scale: 200%;
+            position: fixed;
+            background-color: #00000015;
+            width: fit-content;
+            color: #797979;
+        }
 
         #h33{
             margin-top: 25px;
@@ -65,6 +74,7 @@
     </style>
 </head>
 <body>
+    <button onclick="toggleNight()" id="night-mode">☀</button>
 <h1>The Hub</h1>
 <h3>_______________________________________________</h3>
 <h3>___________________________________________________________________________________________</h3>
@@ -77,8 +87,10 @@
 <h3>_______________________________________________</h3>
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9697392931058156"
-crossorigin="anonymous">
+<script>
+let botonNoche = document.getElementById('night-mode');
+var toogleF = true;
+
     function adjustBoxShadow() {
         const elements = document.querySelectorAll(".shadow-element");
         const centerX = (window.innerWidth / 2); // Calculate the center of the screen
@@ -112,6 +124,18 @@ crossorigin="anonymous">
 
     // Call the function whenever the window is resized
     window.addEventListener("resize", adjustBoxShadow);
+
+    function toggleNight(){
+        if(toogleF == true){
+            botonNoche.style.color = '#797979';
+            botonNoche.style.backgroundColor = '#00000015';
+        }
+        else{
+            botonNoche.style.color = '#797979';
+            botonNoche.style.backgroundColor = '#00000015';
+            html.style.backgroundColor = '#999999';
+        }
+    }
 </script>
 
 

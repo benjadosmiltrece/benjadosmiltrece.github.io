@@ -19,5 +19,6 @@ h4 {
     text-decoration: none;
 }
 .resultsstyle:hover {
-    background-color: #00000025;
+    background-color: #00000010;
+    font-size: large;
 }

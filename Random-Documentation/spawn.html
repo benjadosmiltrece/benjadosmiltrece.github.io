@@ -9,5 +9,25 @@
 <body>
     <h1>- Random Documentation -</h1>
     <h4>Just random documentation about random stuff.</h4>
+
+    <input type="text" id="searchBox" placeholder="Search...">
+    <div id="results"></div>
 </body>
 </html>
+
+<script src="rd-search.js"></script>
+<script>
+    document.getElementById('searchBox').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const results = searchIndex.filter(page => 
+        page.content.toLowerCase().includes(query) || 
+        page.title.toLowerCase().includes(query)
+    );
+    
+    const resultsHTML = results.map(page => 
+        `<div><a href="${page.url}">${page.title}</a></div>`
+    ).join('');
+    
+    document.getElementById('results').innerHTML = resultsHTML;
+    });
+</script>

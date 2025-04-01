@@ -4,11 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Install SM64 Plus on Linux</title>
+    <link rel="stylesheet" href="../../rd-style.css">
 </head>
 <body>
+
+    <a href="../../spawn.html">← Go back</a>
+
     <h1>How to install Super Mario 64 Plus on Linux tutorial</h1>
     <h4>A tutorial with a couble of aclarations that the tutorial of the official Github for SM64 Plus doesn't have</h4>
-    <a href="https://github.com/MorsGames/sm64plus/wiki/Manual-Building-Guide">Official MorsGames SM64 Plus build guide</a>
-    <p>bazinga</p>
+    <b>Official MorsGames SM64 Plus build guide: </b><a href="https://github.com/MorsGames/sm64plus/wiki/Manual-Building-Guide">https://github.com/MorsGames/sm64plus/wiki/Manual-Building-Guide</a>
+<br>
+<br>
+<br>
+    <h4>Step 0:</h4>
+    <b>Dependencies:</b>
+    <p>Open the <b>terminal</b> and install the required packages depending on your Linux distro and package manager:</p>
+    <p>On <b>Debian/Ubuntu</b> based distros: Run the command:</p>
+    <b class="code">sudo apt install -y git build-essential pkg-config libusb-1.0-0-dev libsdl2-dev</b>
+
+    <p>On <b>Arch</b> based distros like <b>Manjaro</b> or <b>CachyOS</b>: Run the command:</p>
+    <b class="code">sudo pacman -S base-devel python sdl2 glew</b>
+
+    <p>On <b>Fedora</b> based distros: Run the command:</p>
+    <b class="code">sudo dnf install make gcc python3 glew-devel SDL2-devel libusb1-devel libXrandr-devel</b>
+<br>
+<br>
+<br>
+    <h4>Step 1:</h4>
+    <p>Download the sm64plus <b>launcher</b> from the official github:</p>
+    <a href="https://github.com/MorsGames/sm64plus-launcher/releases/">https://github.com/MorsGames/sm64plus-launcher/releases/</a>
+    <p>(check if your system is x64 or arm64)</p>
+    <p>(if your system is 32-bits <b>i think</b> you can use the 64-bits one anyway and change a setting in the <b>make build step</b>)</p>
+<br>
+    <h4>Step 2:</h4>
+    <p>Download the original Super Mario 64 USA ROM with the <b>.z64</b> filetype</p>
+    (I downloaded it from <b>Archive.org</b>): <a href="https://archive.org/details/super-mario-64-usa_202401">https://archive.org/details/super-mario-64-usa_202401</a>
+    <p>Then rename the file to <b>baserom.us.z64</b></p>
+    <b>Example</b>:
+    Super Mario 64 (USA).z64 → <b>baserom.us.z64</b>
+<br>
+<br>
+<br>
+    <h4>Step 3:</h4>
+    <p>Open your <b>terminal</b> and clone the sm64plus repository with the command:</p>
+    <b class="code">git clone https://github.com/MorsGames/sm64plus.git</b>
+    <p>move the folder <b>"'sm64plus'</b> to the launcher folder:</p>
+    <b class="code">SM64Plus_x64/bin/</b>
+    <p>How it should look like:</p>
+    <b class="code">SM64Plus_x64/bin/assets/</b><br>
+    <b class="code">SM64Plus_x64/bin/<b>sm64plus</b>/</b><br>
+    <b class="code">SM64Plus_x64/bin/SM64Plus</b><br>
+<br>
+<br>
+<br>
+    <h4>Step 4:</h4>
+    <p>Move the Original Super Mario 64 ROM to the sm64plus folder</p>
+    <b class="code">SM64Plus_x64/bin/sm64plus/<b>baserom.us.z64</b></b>
+<br>
+<br>
+<br>
+    <h4>Step 4:</h4>
+    <p>Open the terminal inside the sm64plus folder</p>
+    <b class="code">SM64Plus_x64/bin/<b>sm64plus</b></b>
+    <p>and execute the command:</p>
+    <b class="code">make</b>
+    <p>(If you're building the game for 32-bit, you should also include TARGET_32BIT=1 after make)</p>
+    <b class="code">make TARGET_32BIT=1</b>
+<br>
+<br>
+<br>
+    <h4>Step 5:</h4>
+    <p>You now can execute the launcher <b>(personal recomendation)</b></p>
+    <b class="code">./SM64Plus_x64/bin/SM64Plus</b><br>
+    <p>or execute the game directly skiping the launcher <b>(your launcher configurations/mods with still be enabled)</b></p>
+    <b class="code">./SM64Plus_x64/bin/sm64plus/build/us_pc/sm64.us.f3dex2e</b><br>
+    <p>or</p>
+    <b class="code">./SM64Plus_x64/bin/sm64plus/build/us_pc/sm64.us</b><br>
+<br>
+<br>
+<br>
+    <h4>Step 6:</h4>
+    <p>Enjoy! :3</p>
 </body>
 </html>

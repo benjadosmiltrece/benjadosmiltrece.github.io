@@ -6,9 +6,34 @@ const searchIndex = [
       "content": "bazinga"
     },
     {
-      "title": "Page 2",
+      "title": "placeholder",
       "url": "page2.html",
-      "content": "All text from page 2..."
+      "content": "All text from placeholder..."
+    },
+    {
+      "title": "placeholder",
+      "url": "page2.html",
+      "content": "All text from placeholder..."
+    },
+    {
+      "title": "placeholder",
+      "url": "page2.html",
+      "content": "All text from placeholder..."
+    },
+    {
+      "title": "placeholder",
+      "url": "page2.html",
+      "content": "All text from placeholder..."
+    },
+    {
+      "title": "placeholder",
+      "url": "page2.html",
+      "content": "All text from placeholder..."
+    },
+    {
+      "title": "placeholder",
+      "url": "page2.html",
+      "content": "All text from placeholder..."
     }
     // etc.
   ];

@@ -74,7 +74,7 @@
     </style>
 </head>
 <body>
-    <button style="display: none;" onclick="toggleNight()" id="night-mode">☀</button>
+    <button onclick="toggleNight()" id="night-mode">☀</button>
 <h1>The Hub</h1>
 <h3>_______________________________________________</h3>
 <h3>___________________________________________________________________________________________</h3>

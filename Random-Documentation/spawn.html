@@ -25,9 +25,10 @@
     );
     
     const resultsHTML = results.map(page => 
-        `<div><a href="${page.url}">${page.title}</a></div>`
+        `<div><a class="resultsstyle" href="${page.url}">- ${page.title}</a></div>`
     ).join('');
     
     document.getElementById('results').innerHTML = resultsHTML;
     });
+    document.getElementById('searchBox').dispatchEvent(new Event('input'));
 </script>

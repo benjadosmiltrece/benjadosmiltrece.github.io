@@ -6,3 +6,18 @@ h1 {
 h4 {
     text-align: center;
 }
+
+#searchBox {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.resultsstyle {
+    text-decoration: none;
+}
+.resultsstyle:hover {
+    background-color: #00000025;
+}

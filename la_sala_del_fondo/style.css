@@ -10,13 +10,15 @@ html {
 }
 
 #maxwell {
-    width: 100px;
+    width: 8vw; /* Adjust based on your needs */
     position: fixed;
-    transform: translateX(650px) translateY(597px);
+    left: 56vw;
+    top: 78vh;
 }
 
 #marisa {
-    width: 80px;
+    width: 7vw; /* Adjust based on your needs */
     position: fixed;
-    transform: translateX(155px) translateY(455px);
+    left: 15vw;
+    top: 45vh;
 }

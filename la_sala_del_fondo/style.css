@@ -1,0 +1,22 @@
+* {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+html {
+    background-image: url(fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#maxwell {
+    width: 100px;
+    position: fixed;
+    transform: translateX(650px) translateY(597px);
+}
+
+#marisa {
+    width: 80px;
+    position: fixed;
+    transform: translateX(155px) translateY(455px);
+}

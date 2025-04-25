@@ -20,6 +20,17 @@ body {
     overflow-x: hidden;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #00000000;
+    font-size: larger;
+}
+button:hover {
+    color: #ffffff80;
+    font-size:xx-large;
+}
 #maxwell, #marisa {
     position: fixed;
     transform: translate(-50%, -50%); /* Centers the element */

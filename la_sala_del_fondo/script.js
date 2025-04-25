@@ -108,10 +108,10 @@ function playfumo_Sound() {
     // Play the fumo_sound
 
     const randomNum = Math.floor(Math.random() * 4); // 0, 1, 2, 3, or 4
-    const randomNumEG = Math.floor(Math.random() * 3); // 0, 1, 2, 3, or 4
+    const randomNumEG = Math.floor(Math.random() * 4); // 0, 1, 2, 3, or 4
 
 
-    if (Math.random() < 0.05) {
+    if (Math.random() < 0.005) {
         if (randomNumEG === 0) {
             fumo_sound = document.getElementById('fumo_ip');
             
@@ -121,6 +121,9 @@ function playfumo_Sound() {
         }
         else if (randomNumEG === 2) {
             fumo_sound = document.getElementById('fumo_lets-a-go');
+        }
+        else if (randomNumEG === 3) {
+            fumo_sound = document.getElementById('sub_l1up');
         }
         else {
             fumo_sound = document.getElementById('fumo_uis');

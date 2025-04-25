@@ -19,8 +19,11 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
-
+audio {
+    position: fixed;
+}
 button {
+    position: fixed;
     background-color: transparent;
     border: none;
     cursor: pointer;

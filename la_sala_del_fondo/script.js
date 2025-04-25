@@ -107,14 +107,14 @@ function playfumo_Sound() {
 
     // Play the fumo_sound
 
-    const randomNum = Math.floor(Math.random() * 4); // 0, 1, 2, 3, or 4
+    const randomNum = Math.floor(Math.random() * 2); // 0, 1, 2, 3, or 4
     const randomNumEG = Math.floor(Math.random() * 4); // 0, 1, 2, 3, or 4
+    const randomNumSML = Math.floor(Math.random() * 2); // small Random chance
 
 
-    if (Math.random() < 0.005) {
+    if (Math.random() < 0.002) {
         if (randomNumEG === 0) {
-            fumo_sound = document.getElementById('fumo_ip');
-            
+            fumo_sound = document.getElementById('fumo_ip');  
         }
         else if (randomNumEG === 1) {
             fumo_sound = document.getElementById('fumo_harigato');
@@ -130,20 +130,19 @@ function playfumo_Sound() {
         }
     }
     else {
-        if (randomNum === 0) {
-            fumo_sound = document.getElementById('fumo_fumo');
-        }
-        else if (randomNum === 1) {
-            fumo_sound = document.getElementById('fumo_low');
-        }
-        else if (randomNum === 2) {
-            fumo_sound = document.getElementById('fumo_u');
-        }
-        else if (randomNum === 3) {
-            fumo_sound = document.getElementById('fuumo');
+        if (randomNumSML === 0) {
+            if (randomNum === 0) {
+                fumo_sound = document.getElementById('fumo_low');
+            }
+            else if (randomNum === 1) {
+                fumo_sound = document.getElementById('fumo_u');
+            }
+            else {
+                fumo_sound = document.getElementById('fumo_ua');
+            }
         }
         else {
-            fumo_sound = document.getElementById('fumo_ua');
+            fumo_sound = document.getElementById('fumo_fumo');
         }
     }
     fumo_sound.currentTime = 0;

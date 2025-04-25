@@ -27,14 +27,15 @@ body {
 }
 
 #maxwell {
+    height: 70px;
     width: 100px;
+    top: calc(100vh - 155px);
     left: calc(50% + 280px - (360px / 2));
-    top: calc(100vh - 140px);
 }
 
 #marisa {
     height: 95px;
     width: 80px;
-    top: calc(100vh - 355px);
+    top: calc(100vh - 385px);
     left: calc(50% + -170px - (400px / 2));
 }

@@ -1,0 +1,7 @@
+bottle.style.transformOrigin = 'calc(500px / 1000px * 100%) calc(930px / 1000px * 100%)';
+
+    // <>
+    bottle.style.height = '10vh';
+    bottle.style.width = '8vw';
+    bottle.style.top = '76.5vh';
+    bottle.style.left = '26.5vw';

@@ -11,29 +11,27 @@ html {
     background-position: center 103vh;
 }
 
-
 audio {
     position: fixed;
 }
-button {
-    z-index: 100;
+#reload {
+    z-index: 200;
     position: fixed;
-    background-color: transparent;
-    border: none;
     cursor: pointer;
-    color: #00000000;
-    font-size: larger;
+    height: 2.5vw;
+    width: 2.5vw;
+    filter: opacity(0%);
 }
-button:hover {
-    color: #ffffff80;
-    font-size:xx-large;
+#reload:hover {
+    height: 3vw;
+    width: 3vw;
+    filter: opacity(25%);
 }
-#maxwell, #marisa, #bottle {
+#maxwell, #marisa, #bottle, #patch_notes, #patch_notes_paper {
     position: fixed;
     transform: translate(-50%, -50%); /* Centers the element */
     z-index: 10;
 }
-
 
 #marisa {
     height: 15vh;
@@ -57,4 +55,27 @@ button:hover {
     transform-origin: center;
     transition: 200ms;
     transform: rotate(360deg)
+}
+
+#patch_notes {
+    width: 12vh;
+    top: 77vh;
+    left: 19.5vw;
+    z-index: 199;
+}
+#patch_notes:hover {
+    content: url(items/patch_notes/patch_notes_open.png);
+}
+
+#patch_notes_paper {
+    height: 80vh;
+    width: 45vw;
+    top: 47vh;
+    left: 50vw;
+    background-image: url(ui/paper.png);
+    position: fixed;
+    z-index: 100;
+    display: none;
+    background-size: cover;
+    scroll-behavior: smooth;
 }

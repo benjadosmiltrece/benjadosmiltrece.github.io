@@ -12,6 +12,10 @@ var bottle = document.getElementById('bottle');
 var bottle_rotation = 0;
 var adjustedRotation = 0;
 
+// Patch Notes
+var paper_sound = document.getElementById('paper_flip_sound');  
+var patch_notes_paper = document.getElementById('patch_notes_paper');
+
 
 
 
@@ -21,23 +25,23 @@ max.addEventListener('click', function() {
     max_sound_effect[max_sound_effect.paused ? 'play' : 'pause']();
     if (max_sound_effect.paused) max_sound_effect.currentTime = 0;
 
-    max.style.height = '40px';
-    max.style.width = '130px';
-    max.style.top = 'calc(100vh - 140px)';
-    max.style.left = 'calc(50% + 280px - (360px / 2))';
+    max.style.height = '5vh';
+    max.style.width = '11vw';
+    max.style.top = '80.7vh';
+    max.style.left = '59vw';
 
     setTimeout(() => {
-        max.style.height = '85px';
-        max.style.width = '85px';
-        max.style.top = 'calc(100vh - 165px)';
-        max.style.left = 'calc(50% + 280px - (360px / 2))';
+        max.style.height = '12vh';
+        max.style.width = '6vw';
+        max.style.top = '78.5vh';
+        max.style.left = '59vw';
     }, 100);
 
     setTimeout(() => {
-        max.style.height = '70px';
-        max.style.width = '100px';
-        max.style.top = 'calc(100vh - 155px)';
-        max.style.left = 'calc(50% + 280px - (360px / 2))';
+        max.style.height = '9vh';
+        max.style.width = '8vw';
+        max.style.top = '79vh';
+        max.style.left = '59vw';
     }, 200);
 
 });
@@ -130,9 +134,9 @@ fumo.addEventListener('click', function() {
 function playfumo_Sound() {
 
     // Play the fumo_sound
-
-    const randomNum = Math.floor(Math.random() * 2); // 0, 1, 2, 3, or 4
-    const randomNumEG = Math.floor(Math.random() * 4); // 0, 1, 2, 3, or 4
+    fumo_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    
+    const randomNumEG = Math.floor(Math.random() * 5); // 0, 1, 2, 3, or 4
     const randomNumSML = Math.floor(Math.random() * 2); // small Random chance
 
 
@@ -149,20 +153,20 @@ function playfumo_Sound() {
         else if (randomNumEG === 3) {
             fumo_sound = document.getElementById('sub_l1up');
         }
+        else if (randomNumEG === 4) {
+            fumo_sound = document.getElementById('fumo_u');
+        }
         else {
             fumo_sound = document.getElementById('fumo_uis');
         }
     }
     else {
         if (randomNumSML === 0) {
-            if (randomNum === 0) {
-                fumo_sound = document.getElementById('fumo_low');
-            }
-            else if (randomNum === 1) {
-                fumo_sound = document.getElementById('fumo_u');
+            if (Math.random() < 0.1) {
+                fumo_sound = document.getElementById('fumo_ua');
             }
             else {
-                fumo_sound = document.getElementById('fumo_ua');
+                fumo_sound = document.getElementById('fumo_low');
             }
         }
         else {
@@ -181,10 +185,37 @@ function bottle_flip() {
     bottle_rotation = Math.random() * 360;
 
     // <>
-    bottle.style.height = '10vh';
-    bottle.style.width = '8vw';
-    bottle.style.top = '71vh';
-    bottle.style.left = '26vw';
+    if (adjustedRotation >= 315 && adjustedRotation <= 405) {
+        bottle.style.height = '10vh';
+        bottle.style.width = '8vw';
+        bottle.style.top = '71vh';
+        bottle.style.left = '26.5vw';
+    } else if (adjustedRotation >= 0 && adjustedRotation <= 45) {
+        bottle.style.height = '10vh';
+        bottle.style.width = '8vw';
+        bottle.style.top = '71vh';
+        bottle.style.left = '25.2vw';
+    } else if (adjustedRotation >= 45 && adjustedRotation <= 170) {
+        bottle.style.height = '13vh';
+        bottle.style.width = '6vw';
+        bottle.style.top = '74vh';
+        bottle.style.left = '27vw';
+    } else if (adjustedRotation >= 165 && adjustedRotation <= 180) {
+        bottle.style.height = '10vh';
+        bottle.style.width = '8vw';
+        bottle.style.top = '71vh';
+        bottle.style.left = '26vw';
+    } else if (adjustedRotation >= 180 && adjustedRotation <= 195) {
+        bottle.style.height = '10vh';
+        bottle.style.width = '8vw';
+        bottle.style.top = '71vh';
+        bottle.style.left = '26vw';
+    } else {
+        bottle.style.height = '13vh';
+        bottle.style.width = '6vw';
+        bottle.style.top = '74vh';
+        bottle.style.left = '27vw';
+    }
 
     // ^|
     setTimeout(() => {
@@ -199,21 +230,28 @@ function bottle_flip() {
     setTimeout(() => {
         bottle.style.transform = `rotate(${bottle_rotation + 180}deg)`;
     }, 300);
+
+    // ^O
+    setTimeout(() => {
+        bottle.style.height = '12vh';
+        bottle.style.width = '7vw';
+        bottle.style.top = '55vh';
+    }, 200);
     
-    // && ⟲ Rotation + <>
+    // && ⟲ Rotation overdose + <>
     setTimeout(() => {
         if (bottle_rotation >= 315 && bottle_rotation <= 405) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
-            bottle.style.left = '26vw';
-            adjustedRotation = 380;
+            bottle.style.left = '26.5vw';
+            adjustedRotation = 375;
         } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
-            bottle.style.left = '23.5vw';
-            adjustedRotation = -20;
+            bottle.style.left = '24.5vw';
+            adjustedRotation = -15;
         } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
             bottle.style.height = '13vh';
             bottle.style.width = '6vw';
@@ -240,14 +278,14 @@ function bottle_flip() {
             adjustedRotation = 270;
         }
         bottle.style.transform = `rotate(${adjustedRotation + 180}deg)`;
-    }, 500);
+    }, 550);
 
     // O
     setTimeout(() => {
         bottle.style.height = '12vh';
         bottle.style.width = '7vw';
-        bottle.style.left = '26.5vw';
-    }, 700);
+        //bottle.style.left = '26.5vw';
+    }, 750);
 
     // && ⟲ Rotation fix + bump
     setTimeout(() => {
@@ -271,7 +309,7 @@ function bottle_flip() {
             adjustedRotation = 270;
         }
         bottle.style.transform = `rotate(${adjustedRotation + 180}deg)`;
-    }, 700);
+    }, 750);
 
     // end
     setTimeout(() => {
@@ -288,5 +326,19 @@ function bottle_flip() {
         } else {
             bottle.style.top = '73.5vh';
         }
-    }, 800);
+    }, 850);
 };
+
+// Patch Notes
+function open_patch_notes() {
+    paper_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    paper_sound.volume = 0.69;
+    paper_sound.currentTime = 0;
+    paper_sound.play();
+    if (patch_notes_paper.style.display === 'block') {
+        patch_notes_paper.style.display = 'none';
+    }
+    else {
+        patch_notes_paper.style.display = 'block';
+    }
+}

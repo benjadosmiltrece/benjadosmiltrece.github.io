@@ -8,7 +8,36 @@
     <link rel="shortcut icon" href="../thumbs/icons/marisa_fumo.png" type="image/x-icon">
 </head>
 <body>
-    <button onclick="location.reload();">⟲</button>
+
+
+    <!-- Patch Notes Paper-->
+    <div id="patch_notes_paper">
+        <object type="text/html" data="patch_notes.html" style="width:100%; height:100%;"></object>
+     </div>
+
+
+
+
+
+<!-- UI -->
+
+    <!-- Hidden Reload Button -->
+    <img id="reload" src="ui/reload.png" onclick="location.reload();" alt="reload">
+
+    <!-- Hidden Settings Button -->
+
+
+    <!-- Patch Notes Button --> 
+    <img src="items/patch_notes/patch_notes_closed.png" alt="patc_notes" id="patch_notes" onclick="open_patch_notes()">
+    <audio id="paper_flip_sound" src="sounds/paper_flip.wav" preload="auto"></audio>
+
+
+
+
+
+
+<!-- Items -->
+
 
     <!-- Maxwell the Spinning Cat -->
     <img id="maxwell" src="items/maxwell-cat.gif" alt="maxwell-cat">

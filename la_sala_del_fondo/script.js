@@ -197,7 +197,7 @@ function bottle_flip() {
 
     // && ⟲ Rotation
     setTimeout(() => {
-        bottle.style.transform = `rotate(${bottle_rotation + 360}deg)`;
+        bottle.style.transform = `rotate(${bottle_rotation + 180}deg)`;
     }, 300);
     
     // && ⟲ Rotation + <>
@@ -206,11 +206,13 @@ function bottle_flip() {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
+            bottle.style.left = '26vw';
             adjustedRotation = 380;
         } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
+            bottle.style.left = '23.5vw';
             adjustedRotation = -20;
         } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
             bottle.style.height = '13vh';
@@ -222,12 +224,14 @@ function bottle_flip() {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
+            bottle.style.left = '26vw';
             adjustedRotation = 195;
         } else if (bottle_rotation >= 180 && bottle_rotation <= 195) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
-            adjustedRotation = 175;
+            bottle.style.left = '26vw';
+            adjustedRotation = 165;
         } else {
             bottle.style.height = '13vh';
             bottle.style.width = '6vw';
@@ -235,7 +239,7 @@ function bottle_flip() {
             bottle.style.left = '27vw';
             adjustedRotation = 270;
         }
-        bottle.style.transform = `rotate(${adjustedRotation + 360}deg)`;
+        bottle.style.transform = `rotate(${adjustedRotation + 180}deg)`;
     }, 500);
 
     // O
@@ -266,7 +270,7 @@ function bottle_flip() {
             bottle.style.top = '70.5vh';
             adjustedRotation = 270;
         }
-        bottle.style.transform = `rotate(${adjustedRotation + 360}deg)`;
+        bottle.style.transform = `rotate(${adjustedRotation + 180}deg)`;
     }, 700);
 
     // end

@@ -1,11 +1,25 @@
+
 // Maxwell the Spinning Cat Song
+var max = document.getElementById('maxwell');
 const max_sound_effect = document.getElementById('maxwell_song');
-document.getElementById('maxwell').addEventListener('click', function() {
+
+// Marisa Kirisame Fumo
+var fumo_sound = document.getElementById('fumo_fumo');
+var fumo = document.getElementById('marisa');
+
+// Bottle
+var bottle = document.getElementById('bottle');
+var bottle_rotation = 0;
+var adjustedRotation = 0;
+
+
+
+
+// Maxwell the Spinning Cat Song
+max.addEventListener('click', function() {
     max_sound_effect.loop = !max_sound_effect.loop;
     max_sound_effect[max_sound_effect.paused ? 'play' : 'pause']();
     if (max_sound_effect.paused) max_sound_effect.currentTime = 0;
-
-    var max = document.getElementById('maxwell');
 
     max.style.height = '40px';
     max.style.width = '130px';
@@ -26,81 +40,91 @@ document.getElementById('maxwell').addEventListener('click', function() {
         max.style.left = 'calc(50% + 280px - (360px / 2))';
     }, 200);
 
-
 });
 
 
-var fumo_sound = document.getElementById('fumo_fumo');
 // Marisa Kirisame Fumo
-document.getElementById('marisa').addEventListener('click', function() {
+fumo.addEventListener('click', function() {
     playfumo_Sound();
-    if (Math.floor(Math.random() * 2) == 0) {
+    if (Math.random() < 0.37) {
         // -- JUMP --
-        var fumo = document.getElementById('marisa');
+        // <>
+        fumo.style.height = '10vh';
+        fumo.style.width = '8.5vw';
+        fumo.style.top = '46.4vh';
+        fumo.style.left = '15vw';
 
-        fumo.style.height = '65px';
-        fumo.style.width = '110px';
-        fumo.style.top = 'calc(100vh - 370px)';
-        fumo.style.left = 'calc(50% + -170px - (400px / 2))';
-
+        // ^|
         setTimeout(() => {
-            fumo.style.height = '105px';
-            fumo.style.width = '70px';
-            fumo.style.top = 'calc(100vh - 425px)';
-            fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+            fumo.style.height = '17vh';
+            fumo.style.width = '6vw';
+            fumo.style.top = '37vh';
+            fumo.style.left = '15vw';
         }, 100);
 
+        // ^O
         setTimeout(() => {
-            fumo.style.height = '95px';
-            fumo.style.width = '80px';
-            fumo.style.top = 'calc(100vh - 425px)';
-            fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+            fumo.style.height = '15vh';
+            fumo.style.width = '7vw';
+            fumo.style.top = '37vh';
+            fumo.style.left = '15vw';
         }, 200);
 
+        // |
         setTimeout(() => {
-            fumo.style.height = '105px';
-            fumo.style.width = '70px';
-            fumo.style.top = 'calc(100vh - 385px)';
-            fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+            fumo.style.height = '17vh';
+            fumo.style.width = '6vw';
+            fumo.style.top = '43vh';
+            fumo.style.left = '15vw';
         }, 350);
 
+        // <>
         setTimeout(() => {
-            fumo.style.height = '65px';
-            fumo.style.width = '110px';
-            fumo.style.top = 'calc(100vh - 370px)';
-            fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+            fumo.style.height = '10vh';
+            fumo.style.width = '8.5vw';
+            fumo.style.top = '46.4vh';
+            fumo.style.left = '15vw';
         }, 450);
 
+        // O
         setTimeout(() => {
-            fumo.style.height = '95px';
-            fumo.style.width = '80px';
-            fumo.style.top = 'calc(100vh - 385px)';
-            fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+            fumo.style.height = '15vh';
+            fumo.style.width = '7vw';
+            fumo.style.top = '44vh';
+            fumo.style.left = '15vw';
         }, 550);
     } else {
     // -- SQUISH --
-    var fumo = document.getElementById('marisa');
+    // <>
+    fumo.style.height = '10vh';
+    fumo.style.width = '8.5vw';
+    fumo.style.top = '46.4vh';
+    fumo.style.left = '15vw';
 
-    fumo.style.height = '65px';
-    fumo.style.width = '110px';
-    fumo.style.top = 'calc(100vh - 370px)';
-    fumo.style.left = 'calc(50% + -170px - (400px / 2))';
-
+    // |
     setTimeout(() => {
-        fumo.style.height = '110px';
-        fumo.style.width = '65px';
-        fumo.style.top = 'calc(100vh - 395px)';
-        fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+        fumo.style.height = '17vh';
+        fumo.style.width = '6vw';
+        fumo.style.top = '43vh';
+        fumo.style.left = '15vw';
     }, 100);
 
+    // <>
     setTimeout(() => {
-        fumo.style.height = '95px';
-        fumo.style.width = '80px';
-        fumo.style.top = 'calc(100vh - 385px)';
-        fumo.style.left = 'calc(50% + -170px - (400px / 2))';
+        fumo.style.height = '10vh';
+        fumo.style.width = '8.5vw';
+        fumo.style.top = '46.4vh';
+        fumo.style.left = '15vw';
+    }, 200);
+
+    // O
+    setTimeout(() => {
+        fumo.style.height = '15vh';
+        fumo.style.width = '7vw';
+        fumo.style.top = '44vh';
+        fumo.style.left = '15vw';
     }, 200);
     }
-
 });
 
 function playfumo_Sound() {
@@ -149,3 +173,116 @@ function playfumo_Sound() {
     fumo_sound.play();
     
 }
+
+// Bottle
+function bottle_flip() {
+
+    bottle.style.transformOrigin = 'center';
+    bottle_rotation = Math.random() * 360;
+
+    // <>
+    bottle.style.height = '10vh';
+    bottle.style.width = '8vw';
+    bottle.style.top = '71vh';
+    bottle.style.left = '26vw';
+
+    // ^|
+    setTimeout(() => {
+        bottle.style.transform = `rotate(${0}deg)`;
+        bottle.style.height = '14vh';
+        bottle.style.width = '6vw';
+        bottle.style.top = '55vh';
+        bottle.style.left = '26.5vw';
+    }, 200);
+
+    // && ⟲ Rotation
+    setTimeout(() => {
+        bottle.style.transform = `rotate(${bottle_rotation + 360}deg)`;
+    }, 300);
+    
+    // && ⟲ Rotation + <>
+    setTimeout(() => {
+        if (bottle_rotation >= 315 && bottle_rotation <= 405) {
+            bottle.style.height = '10vh';
+            bottle.style.width = '8vw';
+            bottle.style.top = '71vh';
+            adjustedRotation = 380;
+        } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
+            bottle.style.height = '10vh';
+            bottle.style.width = '8vw';
+            bottle.style.top = '71vh';
+            adjustedRotation = -20;
+        } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
+            bottle.style.height = '13vh';
+            bottle.style.width = '6vw';
+            bottle.style.top = '74vh';
+            bottle.style.left = '27vw';
+            adjustedRotation = 90;
+        } else if (bottle_rotation >= 165 && bottle_rotation <= 180) {
+            bottle.style.height = '10vh';
+            bottle.style.width = '8vw';
+            bottle.style.top = '71vh';
+            adjustedRotation = 195;
+        } else if (bottle_rotation >= 180 && bottle_rotation <= 195) {
+            bottle.style.height = '10vh';
+            bottle.style.width = '8vw';
+            bottle.style.top = '71vh';
+            adjustedRotation = 175;
+        } else {
+            bottle.style.height = '13vh';
+            bottle.style.width = '6vw';
+            bottle.style.top = '74vh';
+            bottle.style.left = '27vw';
+            adjustedRotation = 270;
+        }
+        bottle.style.transform = `rotate(${adjustedRotation + 360}deg)`;
+    }, 500);
+
+    // O
+    setTimeout(() => {
+        bottle.style.height = '12vh';
+        bottle.style.width = '7vw';
+        bottle.style.left = '26.5vw';
+    }, 700);
+
+    // && ⟲ Rotation fix + bump
+    setTimeout(() => {
+        if (bottle_rotation >= 315 && bottle_rotation <= 405) {
+            bottle.style.top = '66.5vh';
+            adjustedRotation = 360;
+        } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
+            bottle.style.top = '66.5vh';
+            adjustedRotation = 0;
+        } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
+            bottle.style.top = '70.5vh';
+            adjustedRotation = 90;
+        } else if (bottle_rotation >= 165 && bottle_rotation <= 180) {
+            bottle.style.top = '66.5vh';
+            adjustedRotation = 180;
+        } else if (bottle_rotation >= 180 && bottle_rotation <= 195) {
+            bottle.style.top = '66.5vh';
+            adjustedRotation = 180;
+        } else {
+            bottle.style.top = '70.5vh';
+            adjustedRotation = 270;
+        }
+        bottle.style.transform = `rotate(${adjustedRotation + 360}deg)`;
+    }, 700);
+
+    // end
+    setTimeout(() => {
+        if (bottle_rotation >= 315 && bottle_rotation <= 405) {
+            bottle.style.top = '69.5vh';
+        } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
+            bottle.style.top = '69.5vh';
+        } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
+            bottle.style.top = '73.5vh';
+        } else if (bottle_rotation >= 165 && bottle_rotation <= 180) {
+            bottle.style.top = '69.5vh';
+        } else if (bottle_rotation >= 180 && bottle_rotation <= 195) {
+            bottle.style.top = '69.5vh';
+        } else {
+            bottle.style.top = '73.5vh';
+        }
+    }, 800);
+};

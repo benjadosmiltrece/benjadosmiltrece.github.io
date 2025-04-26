@@ -6,23 +6,17 @@
 }
 
 html {
-    background-image: url(fondo_blur.jpg);
+    background-image: url(fondo.jpg);
     background-size: cover;
+    background-position: center 103vh;
 }
 
-body {
-    background-image: url(fondo.jpg);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: auto 100vh;
-    background-attachment: fixed;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+
 audio {
     position: fixed;
 }
 button {
+    z-index: 100;
     position: fixed;
     background-color: transparent;
     border: none;
@@ -34,22 +28,33 @@ button:hover {
     color: #ffffff80;
     font-size:xx-large;
 }
-#maxwell, #marisa {
+#maxwell, #marisa, #bottle {
     position: fixed;
     transform: translate(-50%, -50%); /* Centers the element */
     z-index: 10;
 }
 
-#maxwell {
-    height: 70px;
-    width: 100px;
-    top: calc(100vh - 155px);
-    left: calc(50% + 280px - (360px / 2));
-}
 
 #marisa {
-    height: 95px;
-    width: 80px;
-    top: calc(100vh - 385px);
-    left: calc(50% + -170px - (400px / 2));
+    height: 15vh;
+    width: 7vw;
+    top: 44vh;
+    left: 15vw;
+}
+
+#maxwell {
+    height: 9vh;
+    width: 8vw;
+    top: 79vh;
+    left: 59vw;
+}
+
+#bottle {
+    height: 12vh;
+    width: 7vw;
+    top: 69.5vh;
+    left: 26.5vw;
+    transform-origin: center;
+    transition: 200ms;
+    transform: rotate(360deg)
 }

@@ -2,6 +2,8 @@ today_date = '2025-04-26';
 //          year-month-day
 
 
+
+
 // Maxwell the Spinning Cat Song
 var max = document.getElementById('maxwell');
 const max_sound_effect = document.getElementById('maxwell_song');
@@ -37,9 +39,11 @@ var settings_patch_indicator = document.getElementById('s_patch_indicator')
 window.addEventListener('load', function() {
 
     // Patch indicator
-    if (settings_patch_indicator) {
-        settings_patch_indicator.checked = localStorage['patch_indicator_setting'] === 'true';
-    }
+    setTimeout(() => {
+        if (settings_patch_indicator) {
+            settings_patch_indicator.checked = localStorage['patch_indicator_setting'] === 'true';
+        }
+    }, 10);
 
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
     // Today's new patch notification icon
@@ -48,6 +52,8 @@ window.addEventListener('load', function() {
     } else {
         new_patch_notification.style.display = 'none';
     }
+
+
 }
 });
 
@@ -410,11 +416,25 @@ function toggle_settings() {
     }
 }
 
+// new patch indicator
 function patch_indicator(settings_patch_indicator) {
     if (settings_patch_indicator.checked) {
         localStorage['patch_indicator_setting'] = true;
     }
     else {
         localStorage['patch_indicator_setting'] = false;
+    }
+}
+
+// dark mode
+function dark_mode(s_dark_mode) {
+    if (s_dark_mode.checked) {
+        localStorage['dark_mode_setting'] = true;
+        alert(patch_notes_paper);
+        patch_notes_paper.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    }
+    else {
+        localStorage['dark_mode_setting'] = false;
+        patch_notes_paper.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     }
 }

@@ -9,17 +9,17 @@
 </head>
 <body>
 
+<!-- UI -->
+
+    <!-- Patch Notes Button --> 
+    <img class="items" src="items/patch_notes/patch_notes_closed.png" alt="patc_notes" id="patch_notes" onclick="open_patch_notes()">
+    <audio id="paper_flip_sound" src="sounds/paper_flip.wav"></audio>
 
     <!-- Patch Notes Paper-->
-    <div id="patch_notes_paper">
+    <div class="items" id="patch_notes_paper">
         <object type="text/html" data="patch_notes.html" style="width:100%; height:100%;"></object>
      </div>
 
-
-
-
-
-<!-- UI -->
 
     <!-- Hidden Reload Button -->
     <img id="reload" src="ui/reload.png" onclick="location.reload();" alt="reload">
@@ -27,9 +27,7 @@
     <!-- Hidden Settings Button -->
     <img id="settings" src="ui/settings.png" onclick="open_settings()" alt="settings">
 
-    <!-- Patch Notes Button --> 
-    <img src="items/patch_notes/patch_notes_closed.png" alt="patc_notes" id="patch_notes" onclick="open_patch_notes()">
-    <audio id="paper_flip_sound" src="sounds/paper_flip.wav"></audio>
+
 
 
 
@@ -41,13 +39,13 @@
 
     <!-- Maxwell the Spinning Cat -->
      <div>
-        <img id="maxwell" src="items/maxwell-cat.gif" alt="maxwell-cat">
+        <img class="items" id="maxwell" src="items/maxwell-cat.gif" alt="maxwell-cat">
         <audio id="maxwell_song" src="sounds/maxwell.wav"></audio>
      </div>
 
     <!-- Marisa Kirisame Fumo -->
     <div>
-        <img id="marisa" src="items/marisa_fumo.png" alt="marisa-fumo">
+        <img class="items" id="marisa" src="items/marisa_fumo.png" alt="marisa-fumo">
             <!--Audio-->
         <audio id="fumo_fumo" src="sounds/fumo/fumo.wav"></audio>
         <audio id="fumo_low" src="sounds/fumo/fumo_low.wav"></audio>
@@ -64,7 +62,7 @@
 
     <!-- Bottle Flipper -->
      <div>
-        <img onclick="bottle_flip()" id="bottle" src="items/bottle.png" alt="bottle">
+        <img class="items" onclick="bottle_flip()" id="bottle" src="items/bottle.png" alt="bottle">
         <audio id="whoosh_1" src="sounds/bottle/whoosh_1.wav"></audio>
         <audio id="whoosh_2" src="sounds/bottle/whoosh_2.wav"></audio>
         <audio id="whoosh_flips" src="sounds/bottle/whoosh_flips.wav"></audio>

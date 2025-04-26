@@ -34,16 +34,17 @@ audio {
     top: 6vh;
 }
 
-#maxwell, #marisa, #bottle, #patch_notes, #patch_notes_paper {
+.items {
     position: fixed;
     transform: translate(-50%, -50%); /* Centers the element */
     z-index: 10;
+    cursor: pointer;
 }
 
 #marisa {
     height: 15vh;
     width: 7vw;
-    top: 44vh;
+    top: 43vh;
     left: 15vw;
 }
 

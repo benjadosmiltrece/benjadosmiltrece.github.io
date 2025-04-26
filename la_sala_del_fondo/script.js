@@ -59,14 +59,14 @@ fumo.addEventListener('click', function() {
         // <>
         fumo.style.height = '10vh';
         fumo.style.width = '8.5vw';
-        fumo.style.top = '46.4vh';
+        fumo.style.top = '45.4vh';
         fumo.style.left = '15vw';
 
         // ^|
         setTimeout(() => {
             fumo.style.height = '17vh';
             fumo.style.width = '6vw';
-            fumo.style.top = '37vh';
+            fumo.style.top = '36vh';
             fumo.style.left = '15vw';
         }, 100);
 
@@ -74,7 +74,7 @@ fumo.addEventListener('click', function() {
         setTimeout(() => {
             fumo.style.height = '15vh';
             fumo.style.width = '7vw';
-            fumo.style.top = '37vh';
+            fumo.style.top = '36vh';
             fumo.style.left = '15vw';
         }, 200);
 
@@ -82,7 +82,7 @@ fumo.addEventListener('click', function() {
         setTimeout(() => {
             fumo.style.height = '17vh';
             fumo.style.width = '6vw';
-            fumo.style.top = '43vh';
+            fumo.style.top = '42vh';
             fumo.style.left = '15vw';
         }, 350);
 
@@ -90,7 +90,7 @@ fumo.addEventListener('click', function() {
         setTimeout(() => {
             fumo.style.height = '10vh';
             fumo.style.width = '8.5vw';
-            fumo.style.top = '46.4vh';
+            fumo.style.top = '45.4vh';
             fumo.style.left = '15vw';
         }, 450);
 
@@ -98,7 +98,7 @@ fumo.addEventListener('click', function() {
         setTimeout(() => {
             fumo.style.height = '15vh';
             fumo.style.width = '7vw';
-            fumo.style.top = '44vh';
+            fumo.style.top = '43vh';
             fumo.style.left = '15vw';
         }, 550);
     } else {
@@ -106,14 +106,14 @@ fumo.addEventListener('click', function() {
     // <>
     fumo.style.height = '10vh';
     fumo.style.width = '8.5vw';
-    fumo.style.top = '46.4vh';
+    fumo.style.top = '45.4vh';
     fumo.style.left = '15vw';
 
     // |
     setTimeout(() => {
         fumo.style.height = '17vh';
         fumo.style.width = '6vw';
-        fumo.style.top = '43vh';
+        fumo.style.top = '42vh';
         fumo.style.left = '15vw';
     }, 100);
 
@@ -121,7 +121,7 @@ fumo.addEventListener('click', function() {
     setTimeout(() => {
         fumo.style.height = '10vh';
         fumo.style.width = '8.5vw';
-        fumo.style.top = '46.4vh';
+        fumo.style.top = '45.4vh';
         fumo.style.left = '15vw';
     }, 200);
 
@@ -129,7 +129,7 @@ fumo.addEventListener('click', function() {
     setTimeout(() => {
         fumo.style.height = '15vh';
         fumo.style.width = '7vw';
-        fumo.style.top = '44vh';
+        fumo.style.top = '43vh';
         fumo.style.left = '15vw';
     }, 200);
     }
@@ -138,7 +138,7 @@ fumo.addEventListener('click', function() {
 function playfumo_Sound() {
 
     // Play the fumo_sound
-    fumo_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    fumo_sound.playbackRate = Math.random() * (1.3 - 0.7) + 0.7;
     
     const randomNumEG = Math.floor(Math.random() * 5); // 0, 1, 2, 3, or 4
     const randomNumSML = Math.floor(Math.random() * 2); // small Random chance
@@ -166,7 +166,7 @@ function playfumo_Sound() {
     }
     else {
         if (randomNumSML === 0) {
-            if (Math.floor(Math.random() * 2) < 0.1) {
+            if (Math.random() < 0.1) {
                 fumo_sound = document.getElementById('fumo_ua');
             }
             else {

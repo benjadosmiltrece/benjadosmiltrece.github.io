@@ -30,8 +30,10 @@ var current_date = new Date().toISOString().split('T')[0]; // This gets today's 
 //      vvv ---------------- THA CODE -------------------- vvv
 
 
-// Today's new patch notification icon
+// ON LOAD
 window.addEventListener('load', function() {
+
+    // Today's new patch notification icon
     if (String(current_date) === today_date) {
         new_patch_notification.style.display = 'block';
     } else {
@@ -383,6 +385,7 @@ function open_patch_notes() {
         patch_notes_paper.style.display = 'none';
     }
     else {
+        new_patch_notification.style.display = 'none';
         patch_notes_button.style.content = 'url(items/patch_notes/patch_notes_open.png)';
         patch_notes_paper.style.display = 'block';
     }

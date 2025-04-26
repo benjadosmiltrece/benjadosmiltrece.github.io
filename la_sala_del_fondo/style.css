@@ -88,3 +88,11 @@ audio {
     display: none;
     scroll-behavior: smooth;
 }
+
+#settings_menu {
+    top: 11vh;
+    position: fixed;
+    z-index: 199;
+    display: none;
+    scroll-behavior: smooth;
+}

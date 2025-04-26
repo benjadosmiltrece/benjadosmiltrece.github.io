@@ -26,6 +26,9 @@ var patch_notes_button = document.getElementById('patch_notes');
 var new_patch_notification = document.getElementById('new_patch_notification');
 var current_date = new Date().toISOString().split('T')[0]; // This gets today's date in the format YYYY-MM-DD
 
+// Settings
+
+var settings_patch_indicator = document.getElementById('s_patch_indicator')
 
 //      vvv ---------------- THA CODE -------------------- vvv
 
@@ -33,12 +36,19 @@ var current_date = new Date().toISOString().split('T')[0]; // This gets today's 
 // ON LOAD
 window.addEventListener('load', function() {
 
+    // Patch indicator
+    if (settings_patch_indicator) {
+        settings_patch_indicator.checked = localStorage['patch_indicator_setting'] === 'true';
+    }
+
+    if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
     // Today's new patch notification icon
     if (String(current_date) === today_date) {
         new_patch_notification.style.display = 'block';
     } else {
         new_patch_notification.style.display = 'none';
     }
+}
 });
 
 // Maxwell the Spinning Cat Song
@@ -183,7 +193,7 @@ function playfumo_Sound() {
     }
     else {
         if (randomNumSML === 0) {
-            if (Math.random() < 0.1) {
+            if (Math.random() < 0.05) {
                 fumo_sound = document.getElementById('fumo_ua');
             }
             else {
@@ -388,5 +398,23 @@ function open_patch_notes() {
         new_patch_notification.style.display = 'none';
         patch_notes_button.style.content = 'url(items/patch_notes/patch_notes_open.png)';
         patch_notes_paper.style.display = 'block';
+    }
+}
+
+function toggle_settings() {
+    const settings = document.getElementById('settings_menu');
+    if (settings.style.display === 'block') {
+        settings.style.display = 'none';
+    } else {
+        settings.style.display = 'block';
+    }
+}
+
+function patch_indicator(settings_patch_indicator) {
+    if (settings_patch_indicator.checked) {
+        localStorage['patch_indicator_setting'] = true;
+    }
+    else {
+        localStorage['patch_indicator_setting'] = false;
     }
 }

@@ -12,25 +12,23 @@
 <!-- UI -->
 
     <!-- Patch Notes Button --> 
-    <img class="items" src="items/patch_notes/patch_notes_closed.png" alt="patc_notes" id="patch_notes" onclick="open_patch_notes()">
-    <audio id="paper_flip_sound" src="sounds/paper_flip.wav"></audio>
+    <div>
+        <img class="items" src="items/patch_notes/patch_notes_closed.png" alt="patc_notes" id="patch_notes" onclick="open_patch_notes()">
+        <audio id="paper_flip_sound" src="sounds/paper_flip.wav"></audio>
 
+        <img class="items" id="new_patch_notification" src="items/patch_notes/notification.png" alt="!">
+    </div>
+    
     <!-- Patch Notes Paper-->
     <div class="items" id="patch_notes_paper">
         <object type="text/html" data="patch_notes.html" style="width:100%; height:100%;"></object>
      </div>
-
 
     <!-- Hidden Reload Button -->
     <img id="reload" src="ui/reload.png" onclick="location.reload();" alt="reload">
 
     <!-- Hidden Settings Button -->
     <img id="settings" src="ui/settings.png" onclick="open_settings()" alt="settings">
-
-
-
-
-
 
 
 

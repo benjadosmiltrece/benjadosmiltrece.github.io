@@ -1,3 +1,6 @@
+today_date = '2025-04-26';
+//          year-month-day
+
 
 // Maxwell the Spinning Cat Song
 var max = document.getElementById('maxwell');
@@ -19,9 +22,22 @@ var water_bottle_sound = document.getElementById('water_bottle');
 // Patch Notes
 var paper_sound = document.getElementById('paper_flip_sound');  
 var patch_notes_paper = document.getElementById('patch_notes_paper');
+var patch_notes_button = document.getElementById('patch_notes');
+var new_patch_notification = document.getElementById('new_patch_notification');
+var current_date = new Date().toISOString().split('T')[0]; // This gets today's date in the format YYYY-MM-DD
 
 
+//      vvv ---------------- THA CODE -------------------- vvv
 
+
+// Today's new patch notification icon
+window.addEventListener('load', function() {
+    if (String(current_date) === today_date) {
+        new_patch_notification.style.display = 'block';
+    } else {
+        new_patch_notification.style.display = 'none';
+    }
+});
 
 // Maxwell the Spinning Cat Song
 max.addEventListener('click', function() {
@@ -49,7 +65,6 @@ max.addEventListener('click', function() {
     }, 200);
 
 });
-
 
 // Marisa Kirisame Fumo
 fumo.addEventListener('click', function() {
@@ -215,7 +230,7 @@ function bottle_flip() {
         bottle.style.width = '8vw';
         bottle.style.top = '71vh';
         bottle.style.left = '26.5vw';
-    } else if (adjustedRotation >= 0 && adjustedRotation <= 45) {
+    } else if (adjustedRotation >= 0 && adjustedRotation < 45) {
         bottle.style.height = '10vh';
         bottle.style.width = '8vw';
         bottle.style.top = '71vh';
@@ -225,7 +240,7 @@ function bottle_flip() {
         bottle.style.width = '6vw';
         bottle.style.top = '74vh';
         bottle.style.left = '27vw';
-    } else if (adjustedRotation >= 165 && adjustedRotation <= 180) {
+    } else if (adjustedRotation >= 165 && adjustedRotation < 180) {
         bottle.style.height = '10vh';
         bottle.style.width = '8vw';
         bottle.style.top = '71vh';
@@ -273,11 +288,11 @@ function bottle_flip() {
             bottle.style.top = '71vh';
             bottle.style.left = '26.5vw';
             adjustedRotation = 375;
-        } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
+        } else if (bottle_rotation >= 0 && bottle_rotation < 45) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
-            bottle.style.left = '24.5vw';
+            bottle.style.left = '24.6vw';
             adjustedRotation = -15;
         } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
             bottle.style.height = '13vh';
@@ -285,7 +300,7 @@ function bottle_flip() {
             bottle.style.top = '74vh';
             bottle.style.left = '27vw';
             adjustedRotation = 90;
-        } else if (bottle_rotation >= 165 && bottle_rotation <= 180) {
+        } else if (bottle_rotation >= 165 && bottle_rotation < 180) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';
             bottle.style.top = '71vh';
@@ -311,7 +326,8 @@ function bottle_flip() {
     setTimeout(() => {
         bottle.style.height = '12vh';
         bottle.style.width = '7vw';
-        //bottle.style.left = '26.5vw';
+        bottle.style.left = '26vw';
+        //bottle.style.left = String(Math.floor(Math.random() * (25.5 - 27.5) + 27.5))+'vw';
     }, 750);
 
     // && ⟲ Rotation fix + bump
@@ -319,13 +335,13 @@ function bottle_flip() {
         if (bottle_rotation >= 315 && bottle_rotation <= 405) {
             bottle.style.top = '66.5vh';
             adjustedRotation = 360;
-        } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
+        } else if (bottle_rotation >= 0 && bottle_rotation < 45) {
             bottle.style.top = '66.5vh';
             adjustedRotation = 0;
         } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
             bottle.style.top = '70.5vh';
             adjustedRotation = 90;
-        } else if (bottle_rotation >= 165 && bottle_rotation <= 180) {
+        } else if (bottle_rotation >= 165 && bottle_rotation < 180) {
             bottle.style.top = '66.5vh';
             adjustedRotation = 180;
         } else if (bottle_rotation >= 180 && bottle_rotation <= 195) {
@@ -342,11 +358,11 @@ function bottle_flip() {
     setTimeout(() => {
         if (bottle_rotation >= 315 && bottle_rotation <= 405) {
             bottle.style.top = '69.5vh';
-        } else if (bottle_rotation >= 0 && bottle_rotation <= 45) {
+        } else if (bottle_rotation >= 0 && bottle_rotation < 45) {
             bottle.style.top = '69.5vh';
         } else if (bottle_rotation >= 45 && bottle_rotation <= 170) {
             bottle.style.top = '73.5vh';
-        } else if (bottle_rotation >= 165 && bottle_rotation <= 180) {
+        } else if (bottle_rotation >= 165 && bottle_rotation < 180) {
             bottle.style.top = '69.5vh';
         } else if (bottle_rotation >= 180 && bottle_rotation <= 195) {
             bottle.style.top = '69.5vh';
@@ -363,9 +379,11 @@ function open_patch_notes() {
     paper_sound.currentTime = 0;
     paper_sound.play();
     if (patch_notes_paper.style.display === 'block') {
+        patch_notes_button.style.content = 'url(items/patch_notes/patch_notes_closed.png)';
         patch_notes_paper.style.display = 'none';
     }
     else {
+        patch_notes_button.style.content = 'url(items/patch_notes/patch_notes_open.png)';
         patch_notes_paper.style.display = 'block';
     }
 }

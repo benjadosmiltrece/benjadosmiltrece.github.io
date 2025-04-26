@@ -36,7 +36,7 @@ audio {
 
 .items {
     position: fixed;
-    transform: translate(-50%, -50%); /* Centers the element */
+    transform: translate(-50%, -50%); /* I need to remove this eventually :( << Or maybe not, idk anymore */
     z-index: 10;
     cursor: pointer;
 }
@@ -71,17 +71,20 @@ audio {
     left: 19.5vw;
     z-index: 199;
 }
-#patch_notes:hover {
-    content: url(items/patch_notes/patch_notes_open.png);
+#new_patch_notification {
+    width: 2vh;
+    top: 73.2vh;
+    left: 20.3vw;
+    z-index: 199;
+    display: none;
 }
 #patch_notes_paper {
     height: 80vh;
     width: 45vw;
-    top: 47vh;
+    top: 48vh;
     left: 50vw;
     position: fixed;
     z-index: 100;
     display: none;
     scroll-behavior: smooth;
-
 }

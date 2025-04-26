@@ -25,11 +25,11 @@
     <img id="reload" src="ui/reload.png" onclick="location.reload();" alt="reload">
 
     <!-- Hidden Settings Button -->
-
+    <img id="settings" src="ui/settings.png" onclick="open_settings()" alt="settings">
 
     <!-- Patch Notes Button --> 
     <img src="items/patch_notes/patch_notes_closed.png" alt="patc_notes" id="patch_notes" onclick="open_patch_notes()">
-    <audio id="paper_flip_sound" src="sounds/paper_flip.wav" preload="auto"></audio>
+    <audio id="paper_flip_sound" src="sounds/paper_flip.wav"></audio>
 
 
 
@@ -40,29 +40,35 @@
 
 
     <!-- Maxwell the Spinning Cat -->
-    <img id="maxwell" src="items/maxwell-cat.gif" alt="maxwell-cat">
-    <audio id="maxwell_song" src="sounds/maxwell.wav" preload="auto"></audio>
-  
+     <div>
+        <img id="maxwell" src="items/maxwell-cat.gif" alt="maxwell-cat">
+        <audio id="maxwell_song" src="sounds/maxwell.wav"></audio>
+     </div>
+
     <!-- Marisa Kirisame Fumo -->
     <div>
         <img id="marisa" src="items/marisa_fumo.png" alt="marisa-fumo">
             <!--Audio-->
-        <audio id="fumo_fumo" src="sounds/fumo/fumo.wav" preload="auto"></audio>
-        <audio id="fumo_low" src="sounds/fumo/fumo_low.wav" preload="auto"></audio>
-        <audio id="fumo_u" src="sounds/fumo/fumo-u.wav" preload="auto"></audio>
-        <audio id="fuumo" src="sounds/fumo/fuumo.wav" preload="auto"></audio>
-        <audio id="fumo_ua" src="sounds/fumo/ua.wav" preload="auto"></audio>
+        <audio id="fumo_fumo" src="sounds/fumo/fumo.wav"></audio>
+        <audio id="fumo_low" src="sounds/fumo/fumo_low.wav"></audio>
+        <audio id="fumo_u" src="sounds/fumo/fumo-u.wav"></audio>
+        <audio id="fuumo" src="sounds/fumo/fuumo.wav"></audio>
+        <audio id="fumo_ua" src="sounds/fumo/ua.wav"></audio>
             <!--Easter Eggs-->
-        <audio id="fumo_ip" src="sounds/fumo/fumo_ip_address.wav" preload="auto"></audio>
-        <audio id="fumo_harigato" src="sounds/fumo/harigato.wav" preload="auto"></audio>
-        <audio id="fumo_lets-a-go" src="sounds/fumo/lets-a-go.wav" preload="auto"></audio>
-        <audio id="fumo_uis" src="sounds/fumo/uis.wav" preload="auto"></audio>
-        <audio id="sub_l1up" src="sounds/fumo/subl1up.wav" preload="auto"></audio>
+        <audio id="fumo_ip" src="sounds/fumo/fumo_ip_address.wav"></audio>
+        <audio id="fumo_harigato" src="sounds/fumo/harigato.wav"></audio>
+        <audio id="fumo_lets-a-go" src="sounds/fumo/lets-a-go.wav"></audio>
+        <audio id="fumo_uis" src="sounds/fumo/uis.wav"></audio>
+        <audio id="sub_l1up" src="sounds/fumo/subl1up.wav"></audio>
     </div>
 
     <!-- Bottle Flipper -->
      <div>
         <img onclick="bottle_flip()" id="bottle" src="items/bottle.png" alt="bottle">
+        <audio id="whoosh_1" src="sounds/bottle/whoosh_1.wav"></audio>
+        <audio id="whoosh_2" src="sounds/bottle/whoosh_2.wav"></audio>
+        <audio id="whoosh_flips" src="sounds/bottle/whoosh_flips.wav"></audio>
+        <audio id="water_bottle" src="sounds/bottle/bottle_water.wav"></audio>
      </div>
 
 

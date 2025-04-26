@@ -11,6 +11,10 @@ var fumo = document.getElementById('marisa');
 var bottle = document.getElementById('bottle');
 var bottle_rotation = 0;
 var adjustedRotation = 0;
+var whoosh_1_sound = document.getElementById('whoosh_1');
+var whoosh_2_sound = document.getElementById('whoosh_2');  
+var whoosh_flips_sound = document.getElementById('whoosh_flips');
+var water_bottle_sound = document.getElementById('water_bottle');
 
 // Patch Notes
 var paper_sound = document.getElementById('paper_flip_sound');  
@@ -162,7 +166,7 @@ function playfumo_Sound() {
     }
     else {
         if (randomNumSML === 0) {
-            if (Math.random() < 0.1) {
+            if (Math.floor(Math.random() * 2) < 0.1) {
                 fumo_sound = document.getElementById('fumo_ua');
             }
             else {
@@ -181,10 +185,31 @@ function playfumo_Sound() {
 // Bottle
 function bottle_flip() {
 
+    whoosh_1_sound.volume = 0.69;
+    whoosh_2_sound.volume = 0.69;
+    whoosh_flips_sound.volume = 0.37;
+    water_bottle_sound.volume = 0.69;
+
+    whoosh_1_sound.currentTime = 0;
+    whoosh_2_sound.currentTime = 0;
+    whoosh_flips_sound.currentTime = 0;
+    water_bottle_sound.currentTime = 0;
+    ////
+    whoosh_1_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    whoosh_2_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    whoosh_flips_sound.playbackRate = Math.random() * (1.3 - 0.8) + 0.8;
+    water_bottle_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+
     bottle.style.transformOrigin = 'center';
     bottle_rotation = Math.random() * 360;
 
     // <>
+    if (Math.floor(Math.random() * 2) === 0){
+        whoosh_1_sound.play();
+    }
+    else {
+        whoosh_2_sound.play();
+    }
     if (adjustedRotation >= 315 && adjustedRotation <= 405) {
         bottle.style.height = '10vh';
         bottle.style.width = '8vw';
@@ -219,6 +244,7 @@ function bottle_flip() {
 
     // ^|
     setTimeout(() => {
+        whoosh_flips_sound.play();
         bottle.style.transform = `rotate(${0}deg)`;
         bottle.style.height = '14vh';
         bottle.style.width = '6vw';
@@ -240,6 +266,7 @@ function bottle_flip() {
     
     // && ⟲ Rotation overdose + <>
     setTimeout(() => {
+        water_bottle_sound.play();
         if (bottle_rotation >= 315 && bottle_rotation <= 405) {
             bottle.style.height = '10vh';
             bottle.style.width = '8vw';

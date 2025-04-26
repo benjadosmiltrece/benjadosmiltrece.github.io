@@ -14,19 +14,26 @@ html {
 audio {
     position: fixed;
 }
-#reload {
-    z-index: 200;
+#reload, #settings {
+    transform-origin: center;
     position: fixed;
     cursor: pointer;
     height: 2.5vw;
     width: 2.5vw;
-    filter: opacity(0%);
+    filter: opacity(10%);
 }
-#reload:hover {
-    height: 3vw;
-    width: 3vw;
+#reload:hover, #settings:hover {
+    transform: scale(1.2);
     filter: opacity(25%);
 }
+#reload {
+    z-index: 200;
+}
+#settings{
+    z-index: 199;
+    top: 6vh;
+}
+
 #maxwell, #marisa, #bottle, #patch_notes, #patch_notes_paper {
     position: fixed;
     transform: translate(-50%, -50%); /* Centers the element */
@@ -66,16 +73,14 @@ audio {
 #patch_notes:hover {
     content: url(items/patch_notes/patch_notes_open.png);
 }
-
 #patch_notes_paper {
     height: 80vh;
     width: 45vw;
     top: 47vh;
     left: 50vw;
-    background-image: url(ui/paper.png);
     position: fixed;
     z-index: 100;
     display: none;
-    background-size: cover;
     scroll-behavior: smooth;
+
 }

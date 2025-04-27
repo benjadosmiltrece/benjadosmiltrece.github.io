@@ -1,6 +1,4 @@
-today_date = '2025-04-26';
-//          year-month-day
-
+last_update = '2025-04-27'; // Last update date in the format YYYY-MM-DD
 
 
 
@@ -28,6 +26,12 @@ var patch_notes_button = document.getElementById('patch_notes');
 var new_patch_notification = document.getElementById('new_patch_notification');
 var current_date = new Date().toISOString().split('T')[0]; // This gets today's date in the format YYYY-MM-DD
 
+// Cookie Clicker
+var cookie = document.getElementById('cookie');
+var cookie_click_sound = document.getElementById('cookie_click_sound');
+var cookie_counter = 0;
+var cookie_text = document.getElementById('cookie_text');
+
 // Settings
 
 var settings_patch_indicator = document.getElementById('s_patch_indicator')
@@ -45,9 +49,14 @@ window.addEventListener('load', function() {
         }
     }, 10);
 
+    if (cookie_text) {
+        cookie_counter = localStorage['cookie_counter'];
+        cookie_text.textContent = 'ㅤㅤ'+cookie_counter+' Cookiesㅤㅤ';
+    }
+
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
     // Today's new patch notification icon
-    if (String(current_date) === today_date) {
+    if (String(current_date) === last_update) {
         new_patch_notification.style.display = 'block';
     } else {
         new_patch_notification.style.display = 'none';
@@ -406,6 +415,170 @@ function open_patch_notes() {
         patch_notes_paper.style.display = 'block';
     }
 }
+
+// Cookie Clicker
+
+    // cookie click
+cookie.addEventListener('click', function() {
+
+    cookie_counter++;
+    localStorage['cookie_counter'] = cookie_counter;
+    cookie_text.textContent = 'ㅤㅤ'+cookie_counter+' Cookiesㅤㅤ';
+
+    // Create a cookie particle
+    const cookieParticle = document.createElement('img');
+    cookieParticle.src = 'items/cookie_particle.png';
+    cookieParticle.style.zIndex = '11';
+    cookieParticle.style.position = 'absolute';
+    cookieParticle.style.pointerEvents = 'none';
+    cookieParticle.style.opacity = '1';
+
+    // Set random size
+    const randomSize = Math.random() * (15 - 25) + 25;
+    cookieParticle.style.width = `${randomSize}px`;
+    cookieParticle.style.height = `${randomSize}px`;
+
+    // Get the mouse position
+    document.addEventListener('click', function(event) {
+        cookieParticle.style.left = `${event.clientX - randomSize / 2}px`;
+        cookieParticle.style.top = `${event.clientY - randomSize / 2}px`;
+    }, { once: true });
+
+    // Add the particle to the document
+    document.body.appendChild(cookieParticle);
+
+    // Animate the particle with separate X and Y animations
+    const jumpHeight = Math.random() * (10 - 20) + 20; // Height of the jump in pixels
+    const horizontalShift = Math.random() * (-30 - 30) + 30; // Random horizontal movement
+
+    // Use requestAnimationFrame for separate X and Y animations
+    let startTime = null;
+    const duration = 1000; // Duration of the animation in milliseconds
+    function animateParticle(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+
+        // Calculate progress
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Apply easing (ease-out for upward motion, ease-in for downward motion)
+        const easeOutProgress = 1 - Math.pow(1 - Math.min(progress * 2, 1), 3); // Ease-out for the first half
+        const easeInProgress = Math.pow(Math.max(progress * 2 - 0, 0), 3); // Ease-in for the second half
+        const currentY = -jumpHeight * easeOutProgress + jumpHeight * easeInProgress;
+        const currentX = horizontalShift * progress;
+
+        // Update particle position
+        cookieParticle.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        cookieParticle.style.opacity = `${1 - progress * 1.5}`; // Fade out as it moves
+
+        // Continue animation or remove particle
+        if (progress < 1) {
+            requestAnimationFrame(animateParticle);
+        } else {
+            cookieParticle.remove();
+        }
+    }
+
+    requestAnimationFrame(animateParticle);
+
+    // Create a "+1" particle
+    const particle = document.createElement('div');
+    particle.style.zIndex = '11';
+    particle.textContent = '+1';
+    particle.style.position = 'absolute';
+    particle.style.color = 'white';
+    particle.style.fontSize = '1.2vw';
+    particle.style.fontWeight = 'bold';
+    particle.style.pointerEvents = 'none';
+    particle.style.opacity = '1';
+
+    // Get the mouse position
+    document.addEventListener('click', function(event) {
+        particle.style.left = `${event.clientX - (Math.random() * (6 - 14) + 14)}px`;
+        particle.style.top = `${event.clientY}px`;
+    }, { once: true });
+
+    // Add the particle to the document
+    document.body.appendChild(particle);
+
+    // Animate the "+1" particle
+    startTime = null;
+    function animateTextParticle(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+
+        // Calculate progress
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Apply easing (ease-out for Y)
+        const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+        const currentY = -50 * easeOutProgress;
+
+        // Update particle position
+        particle.style.transform = `translateY(${currentY}px)`;
+        particle.style.opacity = `${1 - progress}`;
+
+        // Continue animation or remove particle
+        if (progress < 1) {
+            requestAnimationFrame(animateTextParticle);
+        } else {
+            particle.remove();
+        }
+    }
+
+    requestAnimationFrame(animateTextParticle);
+
+    cookie_click_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    cookie_click_sound.volume = 1;
+    cookie_click_sound.currentTime = 0;
+    cookie_click_sound.play();
+
+    cookie.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+        cookie.style.transform = 'scale(1)';
+        if (cookie.matches(':hover')) {
+            cookie.dispatchEvent(new Event('mouseover'));
+        }
+        else {
+            cookie.dispatchEvent(new Event('mouseout'));
+        }
+    }, 100);
+
+});
+
+    // cookie hover
+let cookieHoverTimeouts = [];
+cookie.addEventListener('mouseover', function() {
+    cookieHoverTimeouts.forEach(timeout => clearTimeout(timeout));
+    cookieHoverTimeouts = [];
+    cookie.style.transform = 'scale(1.15)';
+    cookieHoverTimeouts.push(setTimeout(() => {
+        cookie.style.transform = 'scale(1.1)';
+    }, 100));
+    cookieHoverTimeouts.push(setTimeout(() => {
+        cookie.style.transform = 'scale(1.125)';
+    }, 200));
+    cookieHoverTimeouts.push(setTimeout(() => {
+        cookie.style.transform = 'scale(1.1)';
+    }, 300));
+});
+
+cookie.addEventListener('mouseout', function() {
+    cookieHoverTimeouts.forEach(timeout => clearTimeout(timeout));
+    cookieHoverTimeouts = [];
+    cookie.style.transform = 'scale(0.95)';
+    cookieHoverTimeouts.push(setTimeout(() => {
+        cookie.style.transform = 'scale(1)';
+    }, 100));
+    cookieHoverTimeouts.push(setTimeout(() => {
+        cookie.style.transform = 'scale(0.975)';
+    }, 200));
+    cookieHoverTimeouts.push(setTimeout(() => {
+        cookie.style.transform = 'scale(1)';
+    }, 300));
+});
+
 
 function toggle_settings() {
     const settings = document.getElementById('settings_menu');

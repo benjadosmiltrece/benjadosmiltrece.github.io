@@ -10,6 +10,13 @@
         color: #e6dbd3;
         font-family: Arial, Helvetica, sans-serif;
     }
+    #cookie_delete_button:hover {
+        scale: 1.1;
+        background-color: red;
+        color: white;
+        border-color: yellow;
+    }
+
 </style>
 
 
@@ -19,6 +26,10 @@
     <input onchange="patch_indicator(this)" id="s_patch_indicator" type="checkbox">
     <span>Disable patch notes indicator</span>
     <img style="width: 10vh;" src="items/patch_notes/notification.png" alt="!">
+</div>
+<br>
+<div>
+    <button onclick="delete_data()" id="cookie_delete_button">⚠️Delete data⚠️</button>
 </div>
 
 <div style="display: none;" title="Enables a darker version of some elements for less eye damage on dark light.">

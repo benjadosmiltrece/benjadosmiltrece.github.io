@@ -34,6 +34,7 @@ var cookie_click_sound = document.getElementById('cookie_click_sound');
 var cookie_counter = 0;
 var cookie_text = document.getElementById('cookie_text');
 var cookie_enable = false;
+var cookie_text_right = 34.3;
 
 // The Wacky TV
 youtube_video = document.getElementById('youtube_video');
@@ -77,12 +78,12 @@ window.addEventListener('load', function() {
         cookie_counter = localStorage['cookie_counter'];
         cookie_enable = true;
         cookie_text.textContent = cookie_counter + ' Cookies';
-        cookie_text.style.right = (34.1 - (digitCount(cookie_counter) / 3.5)) + 'vw';
+        cookie_text.style.right = (cookie_text_right - (digitCount(cookie_counter) / 3.2)) + 'vw';
     } else {
         setTimeout(() => {
             cookie_enable = true;
             cookie_text.textContent = cookie_counter + ' Cookies';
-            cookie_text.style.right = (34.1 - (digitCount(cookie_counter) / 3.5)) + 'vw';
+            cookie_text.style.right = (cookie_text_right - (digitCount(cookie_counter) / 3.2)) + 'vw';
         }, 10);
     }
 }
@@ -450,7 +451,7 @@ cookie.addEventListener('click', function() {
         cookie_counter++;
         localStorage['cookie_counter'] = cookie_counter;
         cookie_text.textContent = cookie_counter+' Cookies';
-        cookie_text.style.right = (34.1 - (digitCount(cookie_counter) / 3.5)) + 'vw';
+        cookie_text.style.right = (cookie_text_right - (digitCount(cookie_counter) / 3.2)) + 'vw';
     }
     else {
         alert('Hold up, baking cookies...');
@@ -657,4 +658,16 @@ function generateRandomYouTubeLink() {
     }
 
     youtube_video.src = `https://www.youtube.com/embed/${videoId}?controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3&cc_load_policy=0`;
-  }
+}
+
+
+
+// Delete data button
+function delete_data() {
+    if (confirm('Are you sure you want to delete all data?')) {
+        localStorage.removeItem('cookie_counter');
+        localStorage.removeItem('patch_indicator_setting');
+        localStorage.removeItem('dark_mode_setting');
+        alert('All data has been deleted. Please refresh the page to see the changes.');
+    }
+}

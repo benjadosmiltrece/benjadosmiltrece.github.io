@@ -60,7 +60,7 @@ window.addEventListener('load', function() {
     // Patch indicator
     setTimeout(() => {
         if (localStorage['patch_indicator_setting']) {
-            settings_patch_indicator.checked = localStorage['patch_indicator_setting'] === 'true';
+            settings_patch_indicator.checked = localStorage['patch_indicator_setting'];
         }
     }, 10);
 
@@ -71,6 +71,9 @@ window.addEventListener('load', function() {
         } else {
             new_patch_notification.style.display = 'none';
         }
+    }
+    else if (localStorage['patch_indicator_setting'] === 'true'){
+        new_patch_notification.style.display = 'none';
     }
 
     // cookies

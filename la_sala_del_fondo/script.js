@@ -1,7 +1,6 @@
 last_update = '2025-04-27'; // Last update date in the format YYYY-MM-DD
 
 
-
 // Maxwell the Spinning Cat Song
 var max = document.getElementById('maxwell');
 const max_sound_effect = document.getElementById('maxwell_song');
@@ -29,7 +28,7 @@ var current_date = new Date().toISOString().split('T')[0]; // This gets today's 
 // Cookie Clicker
 var cookie = document.getElementById('cookie');
 var cookie_click_sound = document.getElementById('cookie_click_sound');
-var cookie_counter_preload;
+var cookie_counter;
 
 // Settings
 

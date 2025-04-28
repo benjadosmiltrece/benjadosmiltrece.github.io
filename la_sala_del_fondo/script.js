@@ -44,7 +44,13 @@ youtube_video = document.getElementById('youtube_video');
 
 var settings_patch_indicator = document.getElementById('s_patch_indicator')
 
-//      vvv ---------------- THA CODE -------------------- vvv
+
+
+
+
+//                                vvv ---------------- THA CODE -------------------- vvv
+
+
 
 
 // ON LOAD
@@ -71,10 +77,12 @@ window.addEventListener('load', function() {
         cookie_counter = localStorage['cookie_counter'];
         cookie_enable = true;
         cookie_text.textContent = cookie_counter + ' Cookies';
+        cookie_text.style.right = (34.1 - (digitCount(cookie_counter) / 3.5)) + 'vw';
     } else {
         setTimeout(() => {
             cookie_enable = true;
             cookie_text.textContent = cookie_counter + ' Cookies';
+            cookie_text.style.right = (34.1 - (digitCount(cookie_counter) / 3.5)) + 'vw';
         }, 10);
     }
 }
@@ -430,15 +438,19 @@ function open_patch_notes() {
     }
 }
 
+function digitCount(num) {
+    return Math.abs(num).toString().length;
+}
+
 // Cookie Clicker
 
     // cookie click
 cookie.addEventListener('click', function() {
-
     if (cookie_enable) {
         cookie_counter++;
         localStorage['cookie_counter'] = cookie_counter;
         cookie_text.textContent = cookie_counter+' Cookies';
+        cookie_text.style.right = (34.1 - (digitCount(cookie_counter) / 3.5)) + 'vw';
     }
     else {
         alert('Hold up, baking cookies...');
@@ -583,6 +595,7 @@ cookie.addEventListener('mouseover', function() {
     }, 300));
 });
 
+    // cookie unhover
 cookie.addEventListener('mouseout', function() {
     cookieHoverTimeouts.forEach(timeout => clearTimeout(timeout));
     cookieHoverTimeouts = [];
@@ -598,6 +611,7 @@ cookie.addEventListener('mouseout', function() {
     }, 300));
 });
 
+// toggle settings
 function toggle_settings() {
     const settings = document.getElementById('settings_menu');
     if (settings.style.display === 'block') {
@@ -630,6 +644,7 @@ function dark_mode(s_dark_mode) {
     }
 }
 
+// the wacky TV
 function generateRandomYouTubeLink() {
     // YouTube video IDs are 11 characters long and can contain:
     // A-Z, a-z, 0-9, -, _ 

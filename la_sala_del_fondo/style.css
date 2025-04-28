@@ -76,7 +76,7 @@ audio {
 #cookie_text {
     position: fixed;
     top: 50vh;
-    right: 415px;
+    right: 34vw;
     z-index: 10;
     font-size: 2vh;
     color: white;

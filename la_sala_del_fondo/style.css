@@ -103,6 +103,7 @@ audio {
     left: 49vw;
 }
 #youtube_video {
+    overflow: hidden;
     height: 77px;
     width: 107px;
     top: 74.1vh;

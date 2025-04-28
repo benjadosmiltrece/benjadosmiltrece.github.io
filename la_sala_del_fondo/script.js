@@ -31,6 +31,7 @@ var cookie = document.getElementById('cookie');
 var cookie_click_sound = document.getElementById('cookie_click_sound');
 var cookie_counter = 0;
 var cookie_text = document.getElementById('cookie_text');
+var cookie_text_offset = 60.2;
 
 // Settings
 
@@ -52,7 +53,7 @@ window.addEventListener('load', function() {
     if (cookie_text) {
         cookie_counter = localStorage['cookie_counter'];
         cookie_text.textContent = ''+cookie_counter+' Cookies';
-        cookie_text.style.left = 58.5 - cookie_counter / 2000 + 'vw';
+        cookie_text.style.left = cookie_text_offset - cookie_counter / 2000 + 'vw';
     }
 
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
@@ -425,7 +426,7 @@ cookie.addEventListener('click', function() {
     cookie_counter++;
     localStorage['cookie_counter'] = cookie_counter;
     cookie_text.textContent = ''+cookie_counter+' Cookies';
-    cookie_text.style.left = 58.5 - cookie_counter / 2000 + 'vw';
+    cookie_text.style.left = cookie_text_offset - cookie_counter / 2000 + 'vw';
 
     // Create a cookie particle
     const cookieParticle = document.createElement('img');

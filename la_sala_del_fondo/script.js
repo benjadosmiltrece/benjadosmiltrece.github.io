@@ -440,7 +440,7 @@ cookie.addEventListener('click', function() {
         cookie_text.textContent = cookie_counter+' Cookies';
     }
     else {
-        alert('Cookie Clicker is disabled until the page is reloaded.');
+        alert('Hold up, baking cookies...');
     }
 
     // Create a cookie particle

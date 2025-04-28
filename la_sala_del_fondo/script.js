@@ -59,25 +59,26 @@ window.addEventListener('load', function() {
 
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
     // Today's new patch notification icon
-    if (String(current_date) === last_update) {
-        new_patch_notification.style.display = 'block';
-    } else {
-        new_patch_notification.style.display = 'none';
+        if (String(current_date) === last_update) {
+            new_patch_notification.style.display = 'block';
+        } else {
+            new_patch_notification.style.display = 'none';
+        }
     }
 
     // cookies
-    if (localStorage['cookie_counter']) {
+    if (!isNaN(localStorage['cookie_counter'])) {
         cookie_counter = localStorage['cookie_counter'];
         cookie_enable = true;
-        cookie_text.textContent = cookie_counter+' Cookies';
-    }
-    else {
+        cookie_text.textContent = cookie_counter + ' Cookies';
+    } else {
         setTimeout(() => {
             cookie_enable = true;
-        }, 100);
+            cookie_text.textContent = cookie_counter + ' Cookies';
+        }, 10);
     }
 }
-});
+);
 
 // Maxwell the Spinning Cat Song
 max.addEventListener('click', function() {

@@ -641,5 +641,5 @@ function generateRandomYouTubeLink() {
       videoId += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
-    youtube_video.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0`;
+    youtube_video.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&disablekb=1&fs=0&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3&cc_load_policy=0`;
   }

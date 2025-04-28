@@ -260,10 +260,10 @@ function bottle_flip() {
     whoosh_flips_sound.currentTime = 0;
     water_bottle_sound.currentTime = 0;
     ////
-    whoosh_1_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
-    whoosh_2_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
-    whoosh_flips_sound.playbackRate = Math.random() * (1.3 - 0.8) + 0.8;
-    water_bottle_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    whoosh_1_sound.playbackRate = Math.random() * (1.2 - 0.8) + 0.8;
+    whoosh_2_sound.playbackRate = Math.random() * (1.2 - 0.8) + 0.8;
+    whoosh_flips_sound.playbackRate = Math.random() * (1.3 - 0.9) + 0.9;
+    water_bottle_sound.playbackRate = Math.random() * (1.2 - 0.8) + 0.8;
 
     bottle.style.transformOrigin = 'center';
     bottle_rotation = Math.random() * 360;
@@ -424,7 +424,7 @@ function bottle_flip() {
 
 // Patch Notes
 function open_patch_notes() {
-    paper_sound.playbackRate = Math.random() * (1.2 - 0.7) + 0.7;
+    paper_sound.playbackRate = Math.random() * (1.2 - 0.8) + 0.8;
     paper_sound.volume = 0.69;
     paper_sound.currentTime = 0;
     paper_sound.play();
@@ -566,9 +566,13 @@ cookie.addEventListener('click', function() {
     cookie_click_sound.play();
 
     cookie.style.transform = 'scale(0.95)';
+    cookie_text.style.scale = '1.05';
+    cookie_text.style.top = '34.4vh';
     
     setTimeout(() => {
         cookie.style.transform = 'scale(1)';
+        cookie_text.style.scale = '1';
+        cookie_text.style.top = '34.5vh';
         if (cookie.matches(':hover')) {
             cookie.dispatchEvent(new Event('mouseover'));
         }
@@ -647,6 +651,9 @@ function dark_mode(s_dark_mode) {
 
 // the wacky TV
 function generateRandomYouTubeLink() {
+    if (window.location.protocol === 'file:') {
+        alert('The Wacky TV is not available when running from a local file. Please run it from a web server, like: https://benjadosmiltrece.github.io/la_sala_del_fondo/index.html');
+    }
     // YouTube video IDs are 11 characters long and can contain:
     // A-Z, a-z, 0-9, -, _ 
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';

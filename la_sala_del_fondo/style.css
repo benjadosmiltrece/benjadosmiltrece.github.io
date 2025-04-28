@@ -2,13 +2,13 @@
     transition: 50ms;
     user-select: none;
     -webkit-user-drag: none;
-    overflow: hidden;
 }
 
 html {
     background-image: url(fondo.jpg);
     background-size: cover;
     background-position: center 103vh;
+    overflow: hidden;
 }
 
 audio {

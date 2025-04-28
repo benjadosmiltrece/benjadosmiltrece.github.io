@@ -49,7 +49,7 @@ window.addEventListener('load', function() {
         }
     }, 10);
 
-    if (cookie_text) {
+    if (localStorage['cookie_counter']) {
         cookie_counter = localStorage['cookie_counter'];
         cookie_text.textContent = +cookie_counter+' Cookies';
     }

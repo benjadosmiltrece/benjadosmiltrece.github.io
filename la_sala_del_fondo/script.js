@@ -29,7 +29,7 @@ var current_date = new Date().toISOString().split('T')[0]; // This gets today's 
 // Cookie Clicker
 var cookie = document.getElementById('cookie');
 var cookie_click_sound = document.getElementById('cookie_click_sound');
-var cookie_counter = 0;
+var cookie_counter_preload;
 
 // Settings
 
@@ -420,8 +420,8 @@ function open_patch_notes() {
     // cookie click
 cookie.addEventListener('click', function() {
 
-    cookie_counter++;
     localStorage['cookie_counter'] = cookie_counter;
+    cookie_counter++;
     cookie_text.textContent = ''+cookie_counter+' Cookies';
 
     // Create a cookie particle

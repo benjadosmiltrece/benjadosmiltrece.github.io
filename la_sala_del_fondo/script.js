@@ -46,7 +46,7 @@ window.addEventListener('load', function() {
 
     // Patch indicator
     setTimeout(() => {
-        if (settings_patch_indicator) {
+        if (localStorage['patch_indicator_setting']) {
             settings_patch_indicator.checked = localStorage['patch_indicator_setting'] === 'true';
         }
     }, 10);

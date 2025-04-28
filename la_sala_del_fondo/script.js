@@ -34,6 +34,11 @@ var cookie_click_sound = document.getElementById('cookie_click_sound');
 var cookie_counter = 0;
 var cookie_text = document.getElementById('cookie_text');
 
+// The Wacky TV
+youtube_video = document.getElementById('youtube_video');
+
+
+
 // Settings
 
 var settings_patch_indicator = document.getElementById('s_patch_indicator')
@@ -581,7 +586,6 @@ cookie.addEventListener('mouseout', function() {
     }, 300));
 });
 
-
 function toggle_settings() {
     const settings = document.getElementById('settings_menu');
     if (settings.style.display === 'block') {
@@ -613,3 +617,17 @@ function dark_mode(s_dark_mode) {
         patch_notes_paper.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     }
 }
+
+function generateRandomYouTubeLink() {
+    // YouTube video IDs are 11 characters long and can contain:
+    // A-Z, a-z, 0-9, -, _ 
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+    const idLength = 11;
+    let videoId = '';
+    
+    for (let i = 0; i < idLength; i++) {
+      videoId += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    youtube_video.src = `https://www.youtube.com/embed/${videoId}`;
+  }

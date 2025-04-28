@@ -84,6 +84,25 @@ audio {
     text-shadow: 1px 1px 5px black;
 }
 
+#youtube_tv {
+    height: 15vw;
+    width: 15vw;
+    top: 71vh;
+    left: 45vw;
+}
+
+#youtube_video {
+    height: 77px;
+    width: 107px;
+    top: 75vh;
+    left: 44.8vw;
+    z-index: 9;
+}
+
+
+
+
+
 #patch_notes {
     width: 12vh;
     top: 77vh;

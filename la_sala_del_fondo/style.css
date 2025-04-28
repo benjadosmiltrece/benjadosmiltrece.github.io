@@ -93,6 +93,7 @@ audio {
 }
 #tv_static {
     z-index: 8;
+    pointer-events: auto;
 }
 
 #tv_controller {

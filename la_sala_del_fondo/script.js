@@ -60,9 +60,9 @@ window.addEventListener('load', function() {
     // Patch indicator
     setTimeout(() => {
         if (localStorage['patch_indicator_setting']) {
-            settings_patch_indicator.checked = localStorage['patch_indicator_setting'];
+            settings_patch_indicator.checked = localStorage['patch_indicator_setting'] === 'true';
         }
-    }, 10);
+    }, 0);
 
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
     // Today's new patch notification icon

@@ -28,7 +28,7 @@ var current_date = new Date().toISOString().split('T')[0]; // This gets today's 
 // Cookie Clicker
 var cookie = document.getElementById('cookie');
 var cookie_click_sound = document.getElementById('cookie_click_sound');
-var cookie_counter;
+var cookie_counter = 0;
 
 // Settings
 

@@ -25,14 +25,15 @@ var patch_notes_paper = document.getElementById('patch_notes_paper');
 var patch_notes_button = document.getElementById('patch_notes');
 var new_patch_notification = document.getElementById('new_patch_notification');
 
-
 var current_date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0]; // Adjusted for local timezone
+
 
 // Cookie Clicker
 var cookie = document.getElementById('cookie');
 var cookie_click_sound = document.getElementById('cookie_click_sound');
 var cookie_counter = 0;
 var cookie_text = document.getElementById('cookie_text');
+var cookie_enable = false;
 
 // The Wacky TV
 youtube_video = document.getElementById('youtube_video');
@@ -56,11 +57,6 @@ window.addEventListener('load', function() {
         }
     }, 10);
 
-    if (localStorage['cookie_counter']) {
-        cookie_counter = localStorage['cookie_counter'];
-        cookie_text.textContent = +cookie_counter+' Cookies';
-    }
-
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
     // Today's new patch notification icon
     if (String(current_date) === last_update) {
@@ -69,7 +65,17 @@ window.addEventListener('load', function() {
         new_patch_notification.style.display = 'none';
     }
 
-
+    // cookies
+    if (localStorage['cookie_counter']) {
+        cookie_counter = localStorage['cookie_counter'];
+        cookie_enable = true;
+        cookie_text.textContent = cookie_counter+' Cookies';
+    }
+    else {
+        setTimeout(() => {
+            cookie_enable = true;
+        }, 100);
+    }
 }
 });
 
@@ -428,9 +434,14 @@ function open_patch_notes() {
     // cookie click
 cookie.addEventListener('click', function() {
 
-    cookie_counter++;
-    localStorage['cookie_counter'] = cookie_counter;
-    cookie_text.textContent = cookie_counter+' Cookies';
+    if (cookie_enable) {
+        cookie_counter++;
+        localStorage['cookie_counter'] = cookie_counter;
+        cookie_text.textContent = cookie_counter+' Cookies';
+    }
+    else {
+        alert('Cookie Clicker is disabled until the page is reloaded.');
+    }
 
     // Create a cookie particle
     const cookieParticle = document.createElement('img');

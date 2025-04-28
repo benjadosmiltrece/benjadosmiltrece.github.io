@@ -1,6 +1,7 @@
 last_update = '2025-04-27'; // Last update date in the format YYYY-MM-DD
 
 
+
 // Maxwell the Spinning Cat Song
 var max = document.getElementById('maxwell');
 const max_sound_effect = document.getElementById('maxwell_song');
@@ -29,6 +30,7 @@ var current_date = new Date().toISOString().split('T')[0]; // This gets today's 
 var cookie = document.getElementById('cookie');
 var cookie_click_sound = document.getElementById('cookie_click_sound');
 var cookie_counter = 0;
+var cookie_text = document.getElementById('cookie_text');
 
 // Settings
 
@@ -49,7 +51,7 @@ window.addEventListener('load', function() {
 
     if (cookie_text) {
         cookie_counter = localStorage['cookie_counter'];
-        cookie_text.textContent = ''+cookie_counter+' Cookies';
+        cookie_text.textContent = +cookie_counter+' Cookies';
     }
 
     if(new_patch_notification && current_date && localStorage['patch_indicator_setting'] === 'false') {
@@ -419,9 +421,9 @@ function open_patch_notes() {
     // cookie click
 cookie.addEventListener('click', function() {
 
-    localStorage['cookie_counter'] = cookie_counter;
     cookie_counter++;
-    cookie_text.textContent = ''+cookie_counter+' Cookies';
+    localStorage['cookie_counter'] = cookie_counter;
+    cookie_text.textContent = cookie_counter+' Cookies';
 
     // Create a cookie particle
     const cookieParticle = document.createElement('img');

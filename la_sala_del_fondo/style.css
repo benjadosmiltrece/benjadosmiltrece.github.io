@@ -104,11 +104,12 @@ audio {
 }
 #youtube_video {
     overflow: hidden;
-    height: 10vh;
-    width: 9vw;
-    top: 74.2vh;
-    left: 42.75vw;
+    height: 109vh;
+    width: 85vw;
+    top: 20vh;
+    left: 0.2vw;
     z-index: 9;
+    transform: scale(0.1);
 }
 
 

@@ -422,6 +422,7 @@ function open_patch_notes() {
 
     // cookie click
 cookie.addEventListener('click', function() {
+
     cookie_counter++;
     localStorage['cookie_counter'] = cookie_counter;
     cookie_text.textContent = cookie_counter+' Cookies';

@@ -24,7 +24,9 @@ var paper_sound = document.getElementById('paper_flip_sound');
 var patch_notes_paper = document.getElementById('patch_notes_paper');
 var patch_notes_button = document.getElementById('patch_notes');
 var new_patch_notification = document.getElementById('new_patch_notification');
-var current_date = new Date().toISOString().split('T')[0]; // This gets today's date in the format YYYY-MM-DD
+
+
+var current_date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0]; // Adjusted for local timezone
 
 // Cookie Clicker
 var cookie = document.getElementById('cookie');

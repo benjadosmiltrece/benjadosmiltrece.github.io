@@ -84,18 +84,28 @@ audio {
     text-shadow: 1px 1px 5px black;
 }
 
-#youtube_tv {
+#youtube_tv, #tv_static{
     height: 15vw;
     width: 15vw;
-    top: 71vh;
-    left: 45vw;
+    top: 70vh;
+    left: 43vw;
+    pointer-events: none;
+}
+#tv_static {
+    z-index: 8;
 }
 
+#tv_controller {
+    height: 3vh;
+    width: 5vw;
+    top: 80.7vh;
+    left: 49vw;
+}
 #youtube_video {
     height: 77px;
     width: 107px;
-    top: 75vh;
-    left: 44.8vw;
+    top: 74.1vh;
+    left: 42.7vw;
     z-index: 9;
 }
 

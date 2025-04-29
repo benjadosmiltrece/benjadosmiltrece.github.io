@@ -1,4 +1,4 @@
-last_update = '2025-04-28'; // Last update date in the format YYYY-MM-DD
+last_update = '2025-04-29'; // Last update date in the format YYYY-MM-DD
 
 
 
@@ -520,7 +520,7 @@ cookie.addEventListener('click', function() {
 
     // Create a "+1" particle
     const particle = document.createElement('div');
-    particle.style.zIndex = '11';
+    particle.style.zIndex = '12';
     particle.textContent = '+1';
     particle.style.position = 'absolute';
     particle.style.color = 'white';

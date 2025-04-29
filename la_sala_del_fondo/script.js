@@ -463,18 +463,8 @@ cookie.addEventListener('click', function() {
     // Create a cookie particle
     const cookieParticle = document.createElement('img');
     cookieParticle.src = 'items/cookies/cookie_particle.png';
-    if (Math.floor(Math.random() * 4) === 0) {
-        cookieParticle.src = 'items/cookies/cookie_particle_1.png';
-    }
-    else if (Math.floor(Math.random() * 4) === 1) {
-        cookieParticle.src = 'items/cookies/cookie_particle_2.png';
-    }
-    else if (Math.floor(Math.random() * 4) === 2) {
-        cookieParticle.src = 'items/cookies/cookie_particle_3.png';
-    }
-    else {
-        cookieParticle.src = 'items/cookies/cookie_particle_4.png';
-    }
+    cookie_random_rotation = Math.random() * (360 - 0) + 0;
+    cookieParticle.style.transform = `rotate(${cookie_random_rotation}deg)`;
     cookieParticle.style.zIndex = '11';
     cookieParticle.style.position = 'absolute';
     cookieParticle.style.pointerEvents = 'none';
@@ -515,7 +505,7 @@ cookie.addEventListener('click', function() {
         const currentX = horizontalShift * progress;
 
         // Update particle position
-        cookieParticle.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        cookieParticle.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${cookie_random_rotation}deg)`;
         cookieParticle.style.opacity = `${1 - progress * 1.5}`; // Fade out as it moves
 
         // Continue animation or remove particle

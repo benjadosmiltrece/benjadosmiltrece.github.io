@@ -462,7 +462,19 @@ cookie.addEventListener('click', function() {
 
     // Create a cookie particle
     const cookieParticle = document.createElement('img');
-    cookieParticle.src = 'items/cookie_particle.png';
+    cookieParticle.src = 'items/cookies/cookie_particle.png';
+    if (Math.floor(Math.random() * 4) === 0) {
+        cookieParticle.src = 'items/cookies/cookie_particle_1.png';
+    }
+    else if (Math.floor(Math.random() * 4) === 1) {
+        cookieParticle.src = 'items/cookies/cookie_particle_2.png';
+    }
+    else if (Math.floor(Math.random() * 4) === 2) {
+        cookieParticle.src = 'items/cookies/cookie_particle_3.png';
+    }
+    else {
+        cookieParticle.src = 'items/cookies/cookie_particle_4.png';
+    }
     cookieParticle.style.zIndex = '11';
     cookieParticle.style.position = 'absolute';
     cookieParticle.style.pointerEvents = 'none';

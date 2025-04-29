@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <title>The Hub</title>
+    <link rel="shortcut icon" href="thumbs/icons/thehub.png" type="image/x-icon">
     <style>
 
         #night-mode{
@@ -49,11 +50,11 @@
             border-width: 3px;
             border-style: solid;
             width: 200px;
-            filter: brightness(0.95);
+            filter: brightness(0.75) grayscale(0.25);
         }
         img:hover{
             scale: 110%;
-            filter: brightness(1.0);
+            filter: brightness(1.0) grayscale(0.0);
         }
         button{
             display: flex;
@@ -74,15 +75,15 @@
     </style>
 </head>
 <body>
-    <button onclick="toggleNight()" id="night-mode">☀</button>
+    <button style="display: none;" onclick="toggleNight()" id="night-mode">☀</button>
 <h1>The Hub</h1>
 <h3>_______________________________________________</h3>
 <h3>___________________________________________________________________________________________</h3>
 <div id="contenedorSalas">
     <button id="c1" class="shadow-element"><a href="pepa/inicio.html"><img src="thumbs/pepaThumbnail2.png" alt="Pepa"></a></button>
     <button id="c2" class="shadow-element"><a href="minijuegos/escapa.html"><img src="thumbs/bolaThumbnail.png" alt="Bola"></a></button>
-    <button id="c2" class="shadow-element"><a href="minijuegos/craftmine.html"><img src="thumbs/craftmineThumbnail.png" alt="Cubo"></a></button>
     <button id="c2" class="shadow-element"><a href="Random-Documentation/spawn.html"><img src="thumbs/randomdocu.png" alt="Random-docu"></a></button>
+    <button id="c2" class="shadow-element"><a href="la_sala_del_fondo/index.html"><img src="thumbs/lasaladelfondo.png" alt="La-sala-del-fondo"></a></button>
 </div>
 <h3 id="h33">___________________________________________________________________________________________</h3>
 <h3>_______________________________________________</h3>

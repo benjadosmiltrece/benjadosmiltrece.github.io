@@ -68,23 +68,12 @@
         key: API_KEY
       });
       const res = await fetch(url);
-      if (!res.ok) throw new Error(res.statusText);
       const data = await res.json();
-      return data.items;
-    }
-
-    // Get one random video, retry on duplicates
-    async function getRandomVideo(seenIds) {
-      let attempts = 0;
-      while (attempts < 5) {
-        const batch = await fetchRandomBatch();
-        const choice = batch[Math.floor(Math.random() * batch.length)];
-        if (!seenIds.has(choice.id.videoId)) {
-          return choice;
-        }
-        attempts++;
+      if (!res.ok) {
+        console.error('YouTube API Error:', data);
+        throw new Error(data.error?.message || 'Unknown error');
       }
-      throw new Error('Too many duplicates');
+      return data.items;
     }
 
     // Main init

@@ -1,6 +1,7 @@
 // script.js
 // Fetches productos.csv, parses it, and populates .productos-container
-// Expects CSV with header: id,categoria,nombre,subtitulo,detalle,empresa,tipo
+// Now: groups by categoria, and inside each categoria groups by tipo.
+// Each tipo gets its own marca image (empresa from first item in that tipo) and its own tipo header.
 
 document.addEventListener('DOMContentLoaded', () => {
   const CSV_PATH = 'productos.csv';
@@ -25,86 +26,97 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Group by categoria (preserve order of first appearance)
-      const groups = {};
-      const order = [];
+      const catGroups = {};
+      const catOrder = [];
       for (const it of items) {
         const cat = it.categoria || 'uncategorized';
-        if (!groups[cat]) { groups[cat] = []; order.push(cat); }
-        groups[cat].push(it);
+        if (!catGroups[cat]) { catGroups[cat] = []; catOrder.push(cat); }
+        catGroups[cat].push(it);
       }
 
       // Clear existing children (so script can regenerate)
       productosContainer.innerHTML = '';
 
-      for (const categoria of order) {
-        const group = groups[categoria];
+      for (const categoria of catOrder) {
+        const group = catGroups[categoria];
 
         // Create tab <div class="tab {categoria}">
         const tab = document.createElement('div');
         tab.className = `tab ${cssSafe(categoria)}`;
 
-        // Brand image (uses empresa from first product)
-        const empresa = group[0].empresa || '';
-        const brandImg = createImgWithFallback(`assets/images/marcas/${empresa}`, ['png','jpg','jpeg','svg']);
-        brandImg.className = 'producto-marcas';
-        brandImg.alt = empresa || categoria;
-        tab.appendChild(brandImg);
+        // Within this category, group by tipo in order of first appearance
+        const tipoGroups = {};
+        const tipoOrder = [];
+        for (const it of group) {
+          const tipo = it.tipo || '';
+          if (!tipoGroups[tipo]) { tipoGroups[tipo] = []; tipoOrder.push(tipo); }
+          tipoGroups[tipo].push(it);
+        }
 
-        tab.appendChild(document.createElement('br'));
+        // For each tipo create its own marca image + headers + productos-lista
+        for (const tipo of tipoOrder) {
+          const tipoItems = tipoGroups[tipo];
 
-        // Separator + Tipo header (use first product tipo, or join unique tipos)
-        const tipos = Array.from(new Set(group.map(g => g.tipo).filter(Boolean)));
-        const tipoText = tipos.length ? tipos.join(' / ') : '';
+          // Brand image (uses empresa from first product in this tipo)
+          const empresa = (tipoItems[0] && tipoItems[0].empresa) || '';
+          const brandImg = createImgWithFallback(`assets/images/marcas/${empresa}`, ['png','jpg','jpeg','svg']);
+          brandImg.className = 'producto-marcas';
+          brandImg.alt = empresa || tipo || categoria;
+          tab.appendChild(brandImg);
 
-        const sep1 = h4Inline('————————————————————');
-        const headerTipo = h4Inline(tipoText);
-        const sep2 = h4Inline('————————————————————');
+          tab.appendChild(document.createElement('br'));
 
-        tab.appendChild(sep1);
-        tab.appendChild(headerTipo);
-        tab.appendChild(sep2);
+          // Separator + Tipo header (header shows this tipo string; empty string will render blank header)
+          const sep1 = h4Inline('————————————————————');
+          const headerTipo = h4Inline(tipo || '');
+          const sep2 = h4Inline('————————————————————');
 
-        // productos-lista
-        const lista = document.createElement('div');
-        lista.className = 'productos-lista';
+          tab.appendChild(sep1);
+          tab.appendChild(headerTipo);
+          tab.appendChild(sep2);
 
-        group.forEach((p, idx) => {
-          // product image
-          const pid = p.id || '';
-          const prodImg = createImgWithFallback(`assets/images/productos/${pid}`, ['png','jpg','jpeg']);
-          lista.appendChild(prodImg);
+          // productos-lista
+          const lista = document.createElement('div');
+          lista.className = 'productos-lista';
 
-          // info block
-          const info = document.createElement('div');
-          info.className = 'inline-block';
+          tipoItems.forEach((p, idx) => {
+            // product image
+            const pid = p.id || '';
+            const prodImg = createImgWithFallback(`assets/images/productos/${pid}`, ['png','jpg','jpeg']);
+            lista.appendChild(prodImg);
 
-          const nombre = document.createElement('h3');
-          nombre.className = 'nombre';
-          // CSV may contain newlines inside name; preserve them as <br>
-          nombre.innerHTML = escapeHtml(p.nombre || '').replace(/\n/g, '<br>');
-          info.appendChild(nombre);
+            // info block
+            const info = document.createElement('div');
+            info.className = 'inline-block';
 
-          const subt = document.createElement('h4');
-          subt.className = 'subtitulo';
-          subt.textContent = p.subtitulo || '';
-          info.appendChild(subt);
+            const nombre = document.createElement('h3');
+            nombre.className = 'nombre';
+            nombre.innerHTML = escapeHtml(p.nombre || '').replace(/\n/g, '<br>');
+            info.appendChild(nombre);
 
-          const det = document.createElement('p');
-          det.className = 'detalle';
-          det.textContent = p.detalle || '';
-          info.appendChild(det);
+            const subt = document.createElement('h4');
+            subt.className = 'subtitulo';
+            subt.textContent = p.subtitulo || '';
+            info.appendChild(subt);
 
-          lista.appendChild(info);
+            const det = document.createElement('p');
+            det.className = 'detalle';
+            det.textContent = p.detalle || '';
+            info.appendChild(det);
 
-          // new-line divider between items (mimic original structure)
-          if (idx !== group.length - 1) {
-            const brdiv = document.createElement('div');
-            brdiv.className = 'new-line';
-            lista.appendChild(brdiv);
-          }
-        });
+            lista.appendChild(info);
 
-        tab.appendChild(lista);
+            // divider between items
+            if (idx !== tipoItems.length - 1) {
+              const brdiv = document.createElement('div');
+              brdiv.className = 'new-line';
+              lista.appendChild(brdiv);
+            }
+          });
+
+          tab.appendChild(lista);
+        }
+
         productosContainer.appendChild(tab);
       }
     })
@@ -123,12 +135,10 @@ function h4Inline(text) {
 }
 
 function cssSafe(name) {
-  // turn "Abrasivos y Complementos" into "abrasivos-y-complementos"
   return String(name).toLowerCase().trim().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'');
 }
 
 function createImgWithFallback(basePath, exts = ['png']) {
-  // returns an <img> element that tries basePath + ext in order using onerror
   const img = document.createElement('img');
   let tryIndex = 0;
   const tryNext = () => {
@@ -136,12 +146,12 @@ function createImgWithFallback(basePath, exts = ['png']) {
     img.src = `${basePath}.${exts[tryIndex]}`;
     tryIndex++;
   };
-  img.addEventListener('error', () => {
-    // try next extension if available
+  img.addEventListener('error', function onErr() {
     if (tryIndex < exts.length) tryNext();
     else {
-      // final fallback: leave broken image or set a transparent 1x1
-      img.removeEventListener('error', arguments.callee);
+      img.removeEventListener('error', onErr);
+      // leave broken image or provide 1x1 transparent fallback if desired:
+      // img.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
     }
   });
   tryNext();

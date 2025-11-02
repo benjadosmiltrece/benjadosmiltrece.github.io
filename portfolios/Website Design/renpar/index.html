@@ -9,100 +9,119 @@
     <title>Renpar - Coatings Solutions</title>
 </head>
 
-<!-- PapaParse -->
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
-(function(){
-  const csvPath = "assets/data/productos.csv"; // put your uploaded CSV here
+document.addEventListener("DOMContentLoaded", () => {
+  const csvPath = "assets/data/productos.csv"; // adjust if needed
   const container = document.querySelector(".productos-container");
+  if (!container) return console.error("No .productos-container found");
 
-  function createProductNode(p) {
-    const img = document.createElement("img");
-    img.src = `assets/images/productos/${p.id}.png`;
-    img.alt = p.title || p.id;
-    img.onerror = () => { img.src = "https://picsum.photos/800/600"; };
+  function slug(s){ return String(s||"").toLowerCase().trim().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,""); }
 
-    const info = document.createElement("div");
-    info.className = "inline-block";
-    info.innerHTML = `<h3>${p.title || ""}</h3><h4>${p.code || ""}</h4><p>${p.ML || ""}</p>`;
+  function renderGrouped(products){
+    container.innerHTML = "";
+    const grouped = products.reduce((acc,p)=>{
+      const cat = (p.category || p.Category || "uncategorized").trim();
+      (acc[cat] = acc[cat]||[]).push(p);
+      return acc;
+    }, {});
+    Object.entries(grouped).forEach(([cat, items])=>{
+      const tab = document.createElement("div");
+      tab.className = "tab " + slug(cat);
+      // keep automotivo special formatting if needed
+      if (cat.toLowerCase() === "automotivo"){
+        const brand = Object.assign(document.createElement("img"), { className:"producto-marcas", src:"assets/images/marcas/axalta.png", alt:"Marca" });
+        tab.appendChild(brand);
+        const h4 = document.createElement("h4");
+        h4.textContent = "———————————————————— Barnices ————————————————————";
+        tab.appendChild(h4);
+      } else {
+        const h4 = document.createElement("h4");
+        h4.textContent = cat;
+        tab.appendChild(h4);
+      }
 
-    // wrapper that matches your .productos-lista layout
-    const wrapper = document.createElement("div");
-    wrapper.appendChild(img);
-    wrapper.appendChild(info);
+      const lista = document.createElement("div");
+      lista.className = "productos-lista";
 
-    return wrapper;
+      items.forEach(p=>{
+        const img = document.createElement("img");
+        img.src = `assets/images/productos/${p.id}.png`;
+        img.alt = p.nombre || p.title || p.id;
+        img.onerror = () => img.src = "https://picsum.photos/800/600";
+
+        const info = document.createElement("div");
+        info.className = "inline-block";
+        info.innerHTML = `<h3>${p.nombre || p.title || ""}</h3><h4>${p.codigo || p.code || ""}</h4><p>${p.ml || p.ML || ""}</p>`;
+
+        const wrapper = document.createElement("div");
+        wrapper.appendChild(img);
+        wrapper.appendChild(info);
+
+        lista.appendChild(wrapper);
+        lista.appendChild(Object.assign(document.createElement("div"), { className: "new-line" }));
+      });
+
+      tab.appendChild(lista);
+      container.appendChild(tab);
+    });
   }
 
-  function clearContainer() {
-    while (container.firstChild) container.removeChild(container.firstChild);
-  }
-
-  function slug(str) {
-    return String(str || "").toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g,"");
-  }
-
+  // Try header:true first, then fallback to index mapping if needed.
   Papa.parse(csvPath, {
     download: true,
     header: true,
     skipEmptyLines: true,
-    complete(results) {
-      const products = results.data;
-      if (!products || products.length === 0) return;
+    complete(results){
+      let data = results.data || [];
+      const fields = (results.meta && results.meta.fields) || [];
 
-      // group by Category
-      const grouped = products.reduce((acc, p) => {
-        const cat = (p.Category || "uncategorized").trim();
-        if (!acc[cat]) acc[cat] = [];
-        acc[cat].push(p);
-        return acc;
-      }, {});
+      // Detect blank first header or missing expected columns
+      const hasId = fields.some(f => String(f).toLowerCase().includes("id"));
+      const hasCategoria = fields.some(f => String(f).toLowerCase().includes("categoria") || String(f).toLowerCase().includes("category"));
+      const hasNombre = fields.some(f => String(f).toLowerCase().includes("nombre") || String(f).toLowerCase().includes("title"));
 
-      clearContainer();
-
-      Object.keys(grouped).forEach(cat => {
-        const tab = document.createElement("div");
-        tab.className = "tab " + slug(cat);
-
-        // optional: add brand image only for automotivo like your example
-        if (cat.toLowerCase() === "automotivo") {
-          const brand = document.createElement("img");
-          brand.className = "producto-marcas";
-          brand.src = "assets/images/marcas/axalta.png";
-          brand.alt = "Marca";
-          tab.appendChild(brand);
-
-          const h4 = document.createElement("h4");
-          h4.textContent = "———————————————————— " + "Barnices" + " ————————————————————";
-          tab.appendChild(h4);
-        } else {
-          const h4 = document.createElement("h4");
-          h4.textContent = cat;
-          tab.appendChild(h4);
-        }
-
-        const lista = document.createElement("div");
-        lista.className = "productos-lista";
-
-        grouped[cat].forEach(p => {
-          const node = createProductNode(p);
-          lista.appendChild(node);
-
-          // keep same visual separation you had
-          const nl = document.createElement("div");
-          nl.className = "new-line";
-          lista.appendChild(nl);
+      if (fields.length === 0 || !hasId || !hasCategoria || !hasNombre) {
+        // fallback: parse as arrays and map by index
+        Papa.parse(csvPath, {
+          download: true,
+          header: false,
+          skipEmptyLines: true,
+          complete(r2){
+            const rows = r2.data || [];
+            // expected row format: [ <nothing>, id, categoria, nombre, codigo, ml ]
+            const products = rows.map(row => {
+              // if header row exists, skip it by detecting non-numeric id or the string "id"
+              if (String(row[1]).toLowerCase().trim() === "id") return null;
+              return {
+                id: String(row[1] || "").trim(),
+                category: String(row[2] || "").trim(),
+                nombre: String(row[3] || "").trim(),
+                codigo: String(row[4] || "").trim(),
+                ml: String(row[5] || "").trim()
+              };
+            }).filter(Boolean);
+            renderGrouped(products);
+          },
+          error(err){ console.error("CSV fallback parse error:", err); }
         });
+        return;
+      }
 
-        tab.appendChild(lista);
-        container.appendChild(tab);
-      });
+      // Normalize keys to known names
+      data = data.map(row => ({
+        id: (row.id || row.ID || row.Id || "").trim(),
+        category: (row.categoria || row.Categoria || row.Category || row.category || "").trim(),
+        nombre: (row.nombre || row.Nombre || row.title || row.Title || "").trim(),
+        codigo: (row.codigo || row.Codigo || row.code || row.Code || "").trim(),
+        ml: (row.ml || row.ML || row.Ml || "").trim()
+      })).filter(p => p.id || p.nombre); // drop empty rows
+
+      renderGrouped(data);
     },
-    error(err) {
-      console.error("CSV load error:", err);
-    }
+    error(err){ console.error("CSV load error:", err); }
   });
-})();
+});
 </script>
 
 

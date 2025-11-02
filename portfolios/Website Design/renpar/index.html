@@ -8,127 +8,7 @@
     <link rel="shortcut icon" href="assets/images/logo/logo-icono.png" type="image/x-icon">
     <title>Renpar - Coatings Solutions</title>
 </head>
-
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const csvPath = "assets/data/productos.csv";
-  const container = document.querySelector(".productos-container");
-  if (!container) return console.error("No .productos-container found");
-
-  const slug = s => String(s||"").toLowerCase().trim().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"");
-
-  function makeProductEntry(p){
-    const img = document.createElement("img");
-    img.src = `assets/images/productos/${p.id}.png`;
-    img.alt = p.nombre || p.id;
-    img.onerror = () => img.style.display = "none"; // hide broken images
-
-    const info = document.createElement("div");
-    info.className = "inline-block";
-    const h3 = document.createElement("h3"); h3.textContent = p.nombre || "";
-    const h4 = document.createElement("h4"); h4.textContent = p.codigo || "";
-    const pml = document.createElement("p"); pml.textContent = p.ml || "";
-    info.appendChild(h3); info.appendChild(h4); info.appendChild(pml);
-
-    const nl = document.createElement("div"); nl.className = "new-line";
-
-    return { img, info, nl };
-  }
-
-  function render(products){
-    container.innerHTML = "";
-
-    // group by categoria
-    const byCat = products.reduce((acc,p)=>{
-      const cat = (p.categoria || "sin-categoria").trim();
-      (acc[cat] = acc[cat] || []).push(p);
-      return acc;
-    }, {});
-
-    Object.entries(byCat).forEach(([cat, items])=>{
-      const tab = document.createElement("div");
-      tab.className = "tab " + slug(cat);
-
-      // group by empresa inside category
-      const byEmpresa = items.reduce((acc,p)=>{
-        const emp = (p.empresa || "").trim();
-        (acc[emp] = acc[emp] || []).push(p);
-        return acc;
-      }, {});
-
-      Object.entries(byEmpresa).forEach(([empresa, empItems])=>{
-        // add brand image only when empresa string is non-empty
-        if (empresa) {
-          const brandImg = document.createElement("img");
-          brandImg.className = "producto-marcas";
-          brandImg.src = `assets/images/marcas/${slug(empresa)}.png`;
-          brandImg.alt = empresa;
-          brandImg.onerror = () => brandImg.style.display = "none"; // do not show if missing
-          tab.appendChild(brandImg);
-        }
-
-        // group by tipo inside this empresa
-        const byTipo = empItems.reduce((acc,p)=>{
-          const tipo = (p.tipo || "Otros").trim();
-          (acc[tipo] = acc[tipo] || []).push(p);
-          return acc;
-        }, {});
-
-        Object.entries(byTipo).forEach(([tipo, tipoItems])=>{
-          const h4 = document.createElement("h4");
-          h4.textContent = `———————————————————— ${tipo} ————————————————————`;
-          tab.appendChild(h4);
-
-          const lista = document.createElement("div");
-          lista.className = "productos-lista";
-
-          tipoItems.forEach(p=>{
-            const entry = makeProductEntry(p);
-            lista.appendChild(entry.img);
-            lista.appendChild(entry.info);
-            lista.appendChild(entry.nl);
-          });
-
-          tab.appendChild(lista);
-        });
-      });
-
-      container.appendChild(tab);
-    });
-  }
-
-  // parse CSV by index for format: <blank>, id, categoria, nombre, codigo, ml, empresa, tipo
-  Papa.parse(csvPath, {
-    download: true,
-    header: false,
-    skipEmptyLines: true,
-    complete(results){
-      const rows = results.data || [];
-      const products = rows.map((row, i) => {
-        // skip header row if present
-        if (i === 0 && String(row[1]||"").toLowerCase().trim() === "id") return null;
-        return {
-          id: String(row[1]||"").trim(),
-          categoria: String(row[2]||"").trim(),
-          nombre: String(row[3]||"").trim(),
-          codigo: String(row[4]||"").trim(),
-          ml: String(row[5]||"").trim(),
-          empresa: String(row[6]||"").trim(),
-          tipo: String(row[7]||"").trim()
-        };
-      }).filter(Boolean);
-
-      if (!products.length) return console.warn("No products found in CSV");
-      render(products);
-    },
-    error(err){ console.error("CSV load error:", err); }
-  });
-});
-</script>
-
-
-
+<script src="script.js" defer></script>
 <body>
 
     <div style="display: none;">
@@ -245,98 +125,173 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="productos-container">
 <!--                                    Automotivo                  -->
             <div class="tab automotivo">
-                <img class="producto-marcas" src="assets/images/marcas/axalta.png" alt="Empresa 1">
-                
-                <h4>———————————————————— Barnices ————————————————————</h4>
+                <img class="producto-marcas" src="assets/images/marcas/axalta.png" alt="Axalta">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Barnices</h4>
+                <h4 class="inline-block">————————————————————</h4>
 
                 <div class="productos-lista">
                     <img src="assets/images/productos/0001.png">
                     <div class="inline-block">
-                        <h3>Kit Barniz c/ Catal</h3>
-                        <h4>DX0491</h4>
-                        <p>900ml</p>
+                        <h3 class="nombre">Kit Barniz c/ Catal</h3>
+                        <h4 class="subtitulo">DX0491</h4>
+                        <p class="detalle">900ml</p>
                     </div>
                     <div class="new-line"></div>
                     <img src="assets/images/productos/0002.png">
                     <div class="inline-block">
-                        <h3>Kit Barniz c/ Catal</h3>
-                        <h4>DX0591</h4>
-                        <p>900ml</p>
+                        <h3 class="nombre">Kit Barniz c/ Catal</h3>
+                        <h4 class="subtitulo">DX0591</h4>
+                        <p class="detalle">900ml</p>
                     </div>
                 </div>
             </div>
 <!--                                    Decorativo                  -->
             <div class="tab decorativo">
-                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Empresa 1">
-                
-                <h4>————————————————— Máquina Tintométrica —————————————————</h4>
+                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Renner">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Máquina Tintométrica</h4>
+                <h4 class="inline-block">————————————————————</h4>
 
-                <img src="https://picsum.photos/800/600" alt="Producto Decorativo 1">
-                <h3>Producto Decorativo 1</h3>
-                <img src="https://picsum.photos/800/600" alt="Producto Decorativo 2">
-                <h3>Producto Decorativo 2</h3>
+                <div class="productos-lista">
+                    <img src="assets/images/productos/0035.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperCobertura</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                    <div class="new-line"></div>
+                    <img src="assets/images/productos/0036.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperResistencia</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                </div>
             </div>
 <!--                                    Madera                  -->
             <div class="tab madera">
-                <img src="assets/images/marcas/fort.jpg" alt="Empresa 1">
+                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Renner">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Máquina Tintométrica</h4>
+                <h4 class="inline-block">————————————————————</h4>
 
-                <h4>———————————————————— Barnices ————————————————————</h4>
-
-                <img src="https://picsum.photos/800/600" alt="Producto Madera 1">
-                <h3>Producto Madera 1</h3>
-                <img src="https://picsum.photos/800/600" alt="Producto Madera 2">
-                <h3>Producto Madera 2</h3>
+                <div class="productos-lista">
+                    <img src="assets/images/productos/0035.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperCobertura</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                    <div class="new-line"></div>
+                    <img src="assets/images/productos/0036.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperResistencia</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                </div>
             </div>
 <!--                                    Industrial                  -->
             <div class="tab industrial">
-                <img src="assets/images/marcas/fort.jpg" alt="Empresa 1">
-                
-                <h4>———————————————————— Barnices ————————————————————</h4>
-                
-                <img src="https://picsum.photos/800/600" alt="Producto Industrial 1">
-                <h3>Producto Industrial 1</h3>
-                <img src="https://picsum.photos/800/600" alt="Producto Industrial 2">
-                <h3>Producto Industrial 2</h3>
+                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Renner">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Máquina Tintométrica</h4>
+                <h4 class="inline-block">————————————————————</h4>
+
+                <div class="productos-lista">
+                    <img src="assets/images/productos/0035.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperCobertura</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                    <div class="new-line"></div>
+                    <img src="assets/images/productos/0036.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperResistencia</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                </div>
             </div>
 <!--                                    Abrasivos y Complementos                  -->
             <div class="tab abrasivos-y-complementos">
-                <img src="assets/images/marcas/fort.jpg" alt="Empresa 1">
+                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Renner">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Máquina Tintométrica</h4>
+                <h4 class="inline-block">————————————————————</h4>
 
-                <h4>———————————————————— Barnices ————————————————————</h4>
-                
-                <img src="https://picsum.photos/800/600" alt="Producto Abrasivos y Complementos 1">
-                <h3>Producto Abrasivos y Complementos 1</h3>
-                <img src="https://picsum.photos/800/600" alt="Producto Abrasivos y Complementos 2">
-                <h3>Producto Abrasivos y Complementos 2</h3>
+                <div class="productos-lista">
+                    <img src="assets/images/productos/0035.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperCobertura</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                    <div class="new-line"></div>
+                    <img src="assets/images/productos/0036.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperResistencia</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                </div>
             </div>
 <!--                                    Cabinas                  -->
             <div class="tab cabinas">
-                <img src="assets/images/marcas/fort.jpg" alt="Empresa 1">
+                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Renner">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Máquina Tintométrica</h4>
+                <h4 class="inline-block">————————————————————</h4>
 
-                <h4>———————————————————— Barnices ————————————————————</h4>
-
-                <img src="https://picsum.photos/800/600" alt="Producto Cabinas 1">
-                <h3>Producto Cabinas 1</h3>
-                <img src="https://picsum.photos/800/600" alt="Producto Cabinas 2">
-                <h3>Producto Cabinas 2</h3>
+                <div class="productos-lista">
+                    <img src="assets/images/productos/0035.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperCobertura</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                    <div class="new-line"></div>
+                    <img src="assets/images/productos/0036.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperResistencia</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                </div>
             </div>
 <!--                                    Herramientas                  -->
             <div class="tab herramientas">
-                <img src="assets/images/marcas/fort.jpg" alt="Empresa 1">
+                <img class="producto-marcas" src="assets/images/marcas/renner.png" alt="Renner">
+                <br>
+                <h4 class="inline-block">————————————————————</h4>
+                <h4 class="inline-block">Máquina Tintométrica</h4>
+                <h4 class="inline-block">————————————————————</h4>
 
-                <h4>———————————————————— Barnices ————————————————————</h4>
-
-                <img src="https://picsum.photos/800/600" alt="Producto Herramientas 1">
-                <h3>Producto Herramientas 1</h3>
-                <img src="https://picsum.photos/800/600" alt="Producto Herramientas 2">
-                <h3>Producto Herramientas 2</h3>
+                <div class="productos-lista">
+                    <img src="assets/images/productos/0035.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperCobertura</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                    <div class="new-line"></div>
+                    <img src="assets/images/productos/0036.png">
+                    <div class="inline-block">
+                        <h3 class="nombre">Rekolor GOLD SuperResistencia</h3>
+                        <h4 class="subtitulo">Interior - Exterior</h4>
+                        <p class="detalle">Color Blanco - Color de maquína</p>
+                    </div>
+                </div>
             </div>
-
         </div>
-
-
     </section>
-
 </body>
-
 </html>

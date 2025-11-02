@@ -12,61 +12,68 @@
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const csvPath = "assets/data/productos.csv"; // change if needed
+  const csvPath = "assets/data/productos.csv";
   const container = document.querySelector(".productos-container");
   if (!container) return console.error("No .productos-container found");
 
   const slug = s => String(s||"").toLowerCase().trim().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,"");
 
-  function makeProductNode(p){
-    const img = Object.assign(document.createElement("img"), {
-      src: `assets/images/productos/${p.id}.png`,
-      alt: p.nombre || p.id
-    });
-    img.onerror = () => img.src = "https://picsum.photos/800/600";
+  function makeProductEntry(p){
+    const img = document.createElement("img");
+    img.src = `assets/images/productos/${p.id}.png`;
+    img.alt = p.nombre || p.id;
+    img.onerror = () => img.style.display = "none"; // hide broken images
 
     const info = document.createElement("div");
     info.className = "inline-block";
-    info.innerHTML = `<h3>${p.nombre||""}</h3><h4>${p.codigo||""}</h4><p>${p.ml||""}</p>`;
+    const h3 = document.createElement("h3"); h3.textContent = p.nombre || "";
+    const h4 = document.createElement("h4"); h4.textContent = p.codigo || "";
+    const pml = document.createElement("p"); pml.textContent = p.ml || "";
+    info.appendChild(h3); info.appendChild(h4); info.appendChild(pml);
 
-    const wrap = document.createElement("div");
-    wrap.appendChild(img);
-    wrap.appendChild(info);
-    return wrap;
+    const nl = document.createElement("div"); nl.className = "new-line";
+
+    return { img, info, nl };
   }
 
   function render(products){
     container.innerHTML = "";
 
+    // group by categoria
     const byCat = products.reduce((acc,p)=>{
-      const cat = (p.categoria || p.category || "uncategorized").trim();
-      (acc[cat] = acc[cat]||[]).push(p);
+      const cat = (p.categoria || "sin-categoria").trim();
+      (acc[cat] = acc[cat] || []).push(p);
       return acc;
-    },{});
+    }, {});
 
     Object.entries(byCat).forEach(([cat, items])=>{
       const tab = document.createElement("div");
       tab.className = "tab " + slug(cat);
 
+      // group by empresa inside category
       const byEmpresa = items.reduce((acc,p)=>{
-        const emp = (p.empresa || "sin-marca").trim();
-        (acc[emp] = acc[emp]||[]).push(p);
+        const emp = (p.empresa || "").trim();
+        (acc[emp] = acc[emp] || []).push(p);
         return acc;
-      },{});
+      }, {});
 
       Object.entries(byEmpresa).forEach(([empresa, empItems])=>{
-        const brandImg = document.createElement("img");
-        brandImg.className = "producto-marcas";
-        brandImg.src = `assets/images/marcas/${slug(empresa)}.png`;
-        brandImg.alt = empresa;
-        brandImg.onerror = () => { brandImg.src = "assets/images/marcas/fort.jpg"; };
-        tab.appendChild(brandImg);
+        // add brand image only when empresa string is non-empty
+        if (empresa) {
+          const brandImg = document.createElement("img");
+          brandImg.className = "producto-marcas";
+          brandImg.src = `assets/images/marcas/${slug(empresa)}.png`;
+          brandImg.alt = empresa;
+          brandImg.onerror = () => brandImg.style.display = "none"; // do not show if missing
+          tab.appendChild(brandImg);
+        }
 
+        // group by tipo inside this empresa
         const byTipo = empItems.reduce((acc,p)=>{
           const tipo = (p.tipo || "Otros").trim();
-          (acc[tipo] = acc[tipo]||[]).push(p);
+          (acc[tipo] = acc[tipo] || []).push(p);
           return acc;
-        },{});
+        }, {});
 
         Object.entries(byTipo).forEach(([tipo, tipoItems])=>{
           const h4 = document.createElement("h4");
@@ -77,8 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
           lista.className = "productos-lista";
 
           tipoItems.forEach(p=>{
-            lista.appendChild(makeProductNode(p));
-            lista.appendChild(Object.assign(document.createElement("div"), { className: "new-line" }));
+            const entry = makeProductEntry(p);
+            lista.appendChild(entry.img);
+            lista.appendChild(entry.info);
+            lista.appendChild(entry.nl);
           });
 
           tab.appendChild(lista);
@@ -89,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Force column-index mapping for your exact format.
+  // parse CSV by index for format: <blank>, id, categoria, nombre, codigo, ml, empresa, tipo
   Papa.parse(csvPath, {
     download: true,
     header: false,
@@ -97,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     complete(results){
       const rows = results.data || [];
       const products = rows.map((row, i) => {
-        // skip header row if it contains "id" in column 1
+        // skip header row if present
         if (i === 0 && String(row[1]||"").toLowerCase().trim() === "id") return null;
         return {
           id: String(row[1]||"").trim(),
@@ -110,13 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
         };
       }).filter(Boolean);
 
-      if (!products.length) return console.warn("CSV parsed but no products found.");
+      if (!products.length) return console.warn("No products found in CSV");
       render(products);
     },
     error(err){ console.error("CSV load error:", err); }
   });
 });
 </script>
+
 
 
 <body>
@@ -240,18 +250,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h4>———————————————————— Barnices ————————————————————</h4>
 
                 <div class="productos-lista">
-                    <img src="https://picsum.photos/800/600" alt="Producto Automotivo 1">
+                    <img src="assets/images/productos/0001.png">
                     <div class="inline-block">
                         <h3>Kit Barniz c/ Catal</h3>
                         <h4>DX0491</h4>
                         <p>900ml</p>
                     </div>
                     <div class="new-line"></div>
-                    <img src="https://picsum.photos/800/600" alt="Producto Automotivo 1">
+                    <img src="assets/images/productos/0002.png">
                     <div class="inline-block">
-                        <h3>Title</h3>
-                        <h4>Code</h4>
-                        <p>ML</p>
+                        <h3>Kit Barniz c/ Catal</h3>
+                        <h4>DX0591</h4>
+                        <p>900ml</p>
                     </div>
                 </div>
             </div>

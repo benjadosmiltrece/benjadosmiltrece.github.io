@@ -1,7 +1,7 @@
 // script.js
 // Fetches productos.csv, parses it, and populates .productos-container
-// Now: groups by categoria, and inside each categoria groups by tipo.
-// Each tipo gets its own marca image (empresa from first item in that tipo) and its own tipo header.
+// Groups by categoria, then by tipo. Only inserts a new .producto-marcas img
+// for a tipo when its empresa differs from the previous tipo's empresa.
 
 document.addEventListener('DOMContentLoaded', () => {
   const CSV_PATH = 'productos.csv';
@@ -53,20 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
           tipoGroups[tipo].push(it);
         }
 
+        // Track last empresa used so we don't duplicate marca img if same empresa repeats
+        let lastEmpresa = null;
+
         // For each tipo create its own marca image + headers + productos-lista
         for (const tipo of tipoOrder) {
           const tipoItems = tipoGroups[tipo];
 
           // Brand image (uses empresa from first product in this tipo)
           const empresa = (tipoItems[0] && tipoItems[0].empresa) || '';
-          const brandImg = createImgWithFallback(`assets/images/marcas/${empresa}`, ['png','jpg','jpeg','svg']);
-          brandImg.className = 'producto-marcas';
-          brandImg.alt = empresa || tipo || categoria;
-          tab.appendChild(brandImg);
 
-          tab.appendChild(document.createElement('br'));
+          // Only append a new marca image if empresa changed (and only try to append when empresa is truthy)
+          if (empresa !== lastEmpresa) {
+            if (empresa) {
+              const brandImg = createImgWithFallback(`assets/images/marcas/${empresa}`, ['png','jpg','jpeg','svg']);
+              brandImg.className = 'producto-marcas';
+              brandImg.alt = empresa || tipo || categoria;
+              tab.appendChild(brandImg);
+              tab.appendChild(document.createElement('br'));
+            }
+            // update lastEmpresa even if empresa is falsy so equal-empty types won't re-append
+            lastEmpresa = empresa;
+          }
 
-          // Separator + Tipo header (header shows this tipo string; empty string will render blank header)
+          // Separator + Tipo header
           const sep1 = h4Inline('————————————————————');
           const headerTipo = h4Inline(tipo || '');
           const sep2 = h4Inline('————————————————————');
@@ -150,7 +160,7 @@ function createImgWithFallback(basePath, exts = ['png']) {
     if (tryIndex < exts.length) tryNext();
     else {
       img.removeEventListener('error', onErr);
-      // leave broken image or provide 1x1 transparent fallback if desired:
+      // optional: provide a 1x1 transparent fallback to avoid broken icon
       // img.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
     }
   });

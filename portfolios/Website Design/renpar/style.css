@@ -1,0 +1,189 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+.hidden {
+    display: none;
+}
+
+.inline-block {
+    display: inline-block;
+    text-align: left;
+}
+
+/* Top bar */
+/* header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    background-color: #F0F0F0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header ul {
+    display: flex;
+}
+
+header .header-logo {
+    padding: 10px;
+    height: 50px;
+}
+
+.header-logo img {
+    height: 100%;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header svg {
+    height: 30px;
+    margin-right: 20px;
+}
+
+header svg:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+header li {
+    list-style: none;
+    margin-right: 20px;
+} */
+
+a {
+    transition: 100ms;
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: underline;
+    font-size: 1.05em;
+
+}
+
+/* True Body */
+
+section {
+    text-align: center;
+    scroll-margin-top: 80px;
+}
+
+.cinta-marcas {
+    background-color: #f0f0f0;
+    padding: 10px 0;
+}
+
+.cinta-marcas img {
+    padding: 5px;
+    height: 75px;
+    display: inline-block;
+}
+
+#inicio {
+    padding-top: 25px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    transition: 250ms;
+    cursor: pointer;
+    padding: 5px 10px 5px;
+}
+
+input[type="radio"]+label {
+    display: inline-block;
+}
+
+input[type="radio"]:checked+label {
+    scale: 1.1;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+#automotivo:checked~.productos-container .tab.automotivo,
+#decorativo:checked~.productos-container .tab.decorativo,
+#madera:checked~.productos-container .tab.madera,
+#industrial:checked~.productos-container .tab.industrial,
+#abrasivos-y-complementos:checked~.productos-container .tab.abrasivos-y-complementos,
+#cabinas:checked~.productos-container .tab.cabinas,
+#herramientas:checked~.productos-container .tab.herramientas {
+    display: block;
+}
+
+.new-line {
+    display: inline-block;
+}
+
+
+#productos {
+    user-select: none;
+}
+
+/* Productos */
+.productos-container {
+    background-color: #f0f0f0;
+}
+
+.tab {
+    display: none;
+}
+
+.producto-marcas {
+    height: 50px;
+    margin-top: 10px;
+}
+
+.productos-lista {
+    user-select: text;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 10px 0 30px 0;
+    align-items: center;
+}
+.productos-lista h3, .productos-lista h4, .productos-lista p {
+    margin: 0;
+}
+.productos-lista img {
+    height: 150px;
+}
+
+
+
+.carta-contacto {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center children horizontally */
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.carta-contacto img {
+    height: 100%;
+    max-width: 100%; /* avoid forcing full-width children */
+    object-fit: contain;
+}
+
+.carta-contacto .svg {
+    height: 25px;
+    margin-bottom: -7px;
+}
+
+.contacto-texto {
+    text-align: left;
+    user-select: none;
+}

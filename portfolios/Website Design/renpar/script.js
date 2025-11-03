@@ -1,9 +1,7 @@
-// script.js
 // Fetches productos.csv, parses it, and populates .productos-container
-// Groups by categoria, then by tipo. Only inserts a new .producto-marcas img
-// for a tipo when its empresa differs from the previous tipo's empresa.
-
 document.addEventListener('DOMContentLoaded', () => {
+  animarCintas();
+
   const CSV_PATH = 'productos.csv';
   const productosContainer = document.querySelector('.productos-container');
   if (!productosContainer) return console.warn('No .productos-container found in DOM.');
@@ -133,21 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => {
       console.error(err);
     });
+
 });
-
 // -- helpers --
-
 function h4Inline(text) {
   const el = document.createElement('h4');
   el.className = 'inline-block';
   el.textContent = text;
   return el;
 }
-
 function cssSafe(name) {
   return String(name).toLowerCase().trim().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'');
 }
-
 function createImgWithFallback(basePath, exts = ['png']) {
   const img = document.createElement('img');
   let tryIndex = 0;
@@ -167,7 +162,6 @@ function createImgWithFallback(basePath, exts = ['png']) {
   tryNext();
   return img;
 }
-
 // Simple CSV parser that supports quoted fields with commas and newlines
 function parseCSV(text) {
   const rows = [];
@@ -212,7 +206,6 @@ function parseCSV(text) {
   }
   return rows;
 }
-
 function escapeHtml(unsafe) {
   return String(unsafe)
     .replace(/&/g, '&amp;')
@@ -221,3 +214,30 @@ function escapeHtml(unsafe) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+
+const cintaMarcas = document.getElementById('cinta-marcas');
+
+function animarCintas() {
+  // reset instantly
+  cintaMarcas.style.transition = '0ms';
+  cintaMarcas.style.transform = 'translateX(0)';
+
+  // force the browser to apply the reset
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      // animate smoothly
+      cintaMarcas.style.transition = '30000ms linear';
+      cintaMarcas.style.transform = 'translateX(-2285px)';
+    });
+  });
+}
+
+animarCintas();
+
+cintaMarcas.addEventListener('transitionend', (event) => {
+  if (event.propertyName === 'transform') {
+    animarCintas();
+  }
+});
+
